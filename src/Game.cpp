@@ -6,22 +6,20 @@
 //
 
 #include "Game.hpp"
-
 void Game::update(){
     // パドルを操作
     m_paddle.update();
     
-    // ボールを移動
-    m_ball.moveBy(m_ballVelocity * Scene::DeltaTime());
+    m_ball.update();
     
     // ブロックを順にチェック
     for (auto it = m_blocks.begin(); it != m_blocks.end(); ++it)
     {
         // ボールとブロックが交差していたら
-        if (it->intersects(m_ball))
+        if (it->intersects(m_ball.m_ball))
         {
             // ボールの向きを反転する
-            (it->bottom().intersects(m_ball) || it->top().intersects(m_ball) ? m_ballVelocity.y : m_ballVelocity.x) *= -1;
+            (it->bottom().intersects(m_ball.m_ball) || it->top().intersects(m_ball.m_ball) ? m_ball.m_ballVelocity.y : m_ball.m_ballVelocity.x) *= -1;
             
             // ブロックを配列から削除（イテレータが無効になるので注意）
             m_blocks.erase(it);
@@ -35,28 +33,28 @@ void Game::update(){
     }
     
     // 天井にぶつかったらはね返る
-    if (m_ball.y < 0 && m_ballVelocity.y < 0)
+    if (m_ball.m_ball.y < 0 && m_ball.m_ballVelocity.y < 0)
     {
-        m_ballVelocity.y *= -1;
+        m_ball.m_ballVelocity.y *= -1;
     }
     
-    if (m_ball.y > Scene::Height())
+    if (m_ball.m_ball.y > Scene::Height())
     {
         changeScene(State::Title);
         getData().highScore = Max(getData().highScore, m_score);
     }
     
     // 左右の壁にぶつかったらはね返る
-    if ((m_ball.x < 0 && m_ballVelocity.x < 0) || (Scene::Width() < m_ball.x && m_ballVelocity.x > 0))
+    if ((m_ball.m_ball.x < 0 && m_ball.m_ballVelocity.x < 0) || (Scene::Width() < m_ball.m_ball.x && m_ball.m_ballVelocity.x > 0))
     {
-        m_ballVelocity.x *= -1;
+        m_ball.m_ballVelocity.x *= -1;
     }
     
     // パドルにあたったらはね返る
-    if (m_ballVelocity.y > 0 && m_paddle.collision(m_ball))
+    if (m_ball.m_ballVelocity.y > 0 && m_paddle.collision(m_ball.m_ball))
     {
         // パドルの中心からの距離に応じてはね返る向きを変える
-        m_ballVelocity = Vec2((m_ball.x - m_paddle.center().x) * 10, -m_ballVelocity.y).setLength(speed);
+        m_ball.m_ballVelocity = Vec2((m_ball.m_ball.x - m_paddle.center().x) * 10, -m_ball.m_ballVelocity.y).setLength(m_ball.speed);
     }
 }
 void Game::draw() const {

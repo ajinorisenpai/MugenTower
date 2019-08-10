@@ -12,7 +12,7 @@
 #include "GameInfo.h"
 #include <Siv3D.hpp>
 #include "Player.hpp"
-
+#include "Bullet.hpp"
 
 // ゲームシーン
 class Game : public SceneManager<State, GameData>::Scene
@@ -23,17 +23,17 @@ private:
     static constexpr Size blockSize = Size(40, 20);
     
     // ボールの速さ
-    static constexpr double speed = 480.0;
+//    static constexpr double speed = 480.0;
     
     // ブロックの配列
     Array<Rect> m_blocks;
     
     // ボールの速度
-    Vec2 m_ballVelocity = Vec2(0, -speed);
+//    Vec2 m_ballVelocity = Vec2(0, -speed);
     
     // ボール
-    Circle m_ball = Circle(400, 400, 8);
-    
+//    Circle m_ball = Circle(400, 400, 8);
+    class Bullet m_ball = Bullet(400,400);
     // パドル
     class Player m_paddle = Player();
     

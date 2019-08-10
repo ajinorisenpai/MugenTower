@@ -36,6 +36,8 @@
 		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
 		ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07D22FE9D8200FCDB83 /* Title.cpp */; };
 		ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF08222FEAE3000FCDB83 /* Player.cpp */; };
+		ED7AF08722FEBB6F00FCDB83 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF08522FEBB6F00FCDB83 /* Bullet.cpp */; };
+		ED7AF08A22FEBF5900FCDB83 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,10 @@
 		ED7AF08022FEA5B100FCDB83 /* GameInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
 		ED7AF08222FEAE3000FCDB83 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		ED7AF08322FEAE3000FCDB83 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		ED7AF08522FEBB6F00FCDB83 /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		ED7AF08622FEBB6F00FCDB83 /* Bullet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
+		ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		ED7AF08922FEBF5900FCDB83 /* Enemy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +144,11 @@
 				ED7AF08022FEA5B100FCDB83 /* GameInfo.h */,
 				ED7AF08222FEAE3000FCDB83 /* Player.cpp */,
 				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
+				ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */,
+				ED7AF08922FEBF5900FCDB83 /* Enemy.hpp */,
 				ED7AF07B22FE9D6600FCDB83 /* Game.hpp */,
+				ED7AF08522FEBB6F00FCDB83 /* Bullet.cpp */,
+				ED7AF08622FEBB6F00FCDB83 /* Bullet.hpp */,
 				ED7AF07D22FE9D8200FCDB83 /* Title.cpp */,
 				ED7AF07E22FE9D8200FCDB83 /* Title.hpp */,
 			);
@@ -243,6 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7AF08A22FEBF5900FCDB83 /* Enemy.cpp in Sources */,
+				ED7AF08722FEBB6F00FCDB83 /* Bullet.cpp in Sources */,
 				ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */,
 				ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */,
 				2C17789A1CE0AA7C00BB8AD0 /* Main.cpp in Sources */,
