@@ -14,7 +14,8 @@
 
 class Player{
 private:
-    Rect rect = Rect(Arg::center(Cursor::Pos().x, 500), 60, 10);
+    s3d::Vec2 pos = Vec2(500,500);
+    Rect rect = Rect(pos.x,pos.y, 60, 10);
 public:
     
     Player(){
@@ -28,7 +29,9 @@ public:
     }
     
     void update(){
-        rect = Rect(Arg::center(Cursor::Pos().x, 500), 60, 10);
+        if(KeyLeft.pressed()) pos.x -= 10;
+        if(KeyRight.pressed()) pos.x += 10;
+        rect = Rect(pos.x,pos.y, 60, 10);
     }
     
     //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
