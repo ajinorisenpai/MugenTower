@@ -33,6 +33,8 @@
 		2C6906D42298131500A427D0 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906CE2298131500A427D0 /* libopencv_imgproc.a */; };
 		2C6906D62298131800A427D0 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906D52298131800A427D0 /* libz.a */; };
 		2C6906D82298140F00A427D0 /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 2C6906D72298140F00A427D0 /* engine */; };
+		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
+		ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07D22FE9D8200FCDB83 /* Title.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,10 @@
 		2C6906CE2298131500A427D0 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../lib/macOS/opencv/libopencv_imgproc.a; sourceTree = "<group>"; };
 		2C6906D52298131800A427D0 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
 		2C6906D72298140F00A427D0 /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = App/engine; sourceTree = "<group>"; };
+		ED7AF07A22FE9D6600FCDB83 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		ED7AF07B22FE9D6600FCDB83 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		ED7AF07D22FE9D8200FCDB83 /* Title.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Title.cpp; sourceTree = "<group>"; };
+		ED7AF07E22FE9D8200FCDB83 /* Title.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Title.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,10 @@
 			isa = PBXGroup;
 			children = (
 				2C1778991CE0AA7C00BB8AD0 /* Main.cpp */,
+				ED7AF07A22FE9D6600FCDB83 /* Game.cpp */,
+				ED7AF07B22FE9D6600FCDB83 /* Game.hpp */,
+				ED7AF07D22FE9D8200FCDB83 /* Title.cpp */,
+				ED7AF07E22FE9D8200FCDB83 /* Title.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -191,7 +201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "empty" */;
+			buildConfigurationList = 2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "MugenTower" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -226,7 +236,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */,
 				2C17789A1CE0AA7C00BB8AD0 /* Main.cpp in Sources */,
+				ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +465,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "empty" */ = {
+		2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "MugenTower" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C17787E1CE0A9D800BB8AD0 /* Debug */,
