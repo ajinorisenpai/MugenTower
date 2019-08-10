@@ -36,13 +36,14 @@ private:
 //    Circle m_ball = Circle(400, 400, 8);
     class Bullet m_ball = Bullet(this,400,400);;
     // パドル
-    class Player m_paddle = Player();
     
+    
+    class Player m_paddle = Player();
     // スコア
     int32 m_score = 0;
     int32 HP = 1;
 public:
-    
+    Player GetPlayer(){return m_paddle;}
     Game(const InitData& init)
     : IScene(init)
     {

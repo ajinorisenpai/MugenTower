@@ -21,6 +21,9 @@ public:
     static constexpr double speed = 480.0;
     Vec2 m_ballVelocity = Vec2(0, -speed);
     Circle m_ball = Circle(pos.x,pos.y,8);
+    Game* GetGame(){
+        return m_Game;
+    }
     Bullet(Game* m_Game,double x,double y){
         pos.x = x;
         pos.y = y;
@@ -30,26 +33,7 @@ public:
         return m_ball.intersects(c);
     }
     
-    void update(int32& HP){
-        // ボールを移動
-        m_ball.moveBy(m_ballVelocity * Scene::DeltaTime());
-        // 天井にぶつかったらはね返る
-        if (m_ball.y < 0 && m_ballVelocity.y < 0)
-        {
-            m_ballVelocity.y *= -1;
-        }
-        // 左右の壁にぶつかったらはね返る
-        if ((m_ball.x < 0 && m_ballVelocity.x < 0) ||
-            (Scene::Width() < m_ball.x && m_ballVelocity.x > 0))
-        {
-            m_ballVelocity.x *= -1;
-        }
-        if (m_ball.y > Scene::Height())
-        {
-            HP-=1;
-        }
-    
-    }
+    void update(int32& HP);
     
     void draw() const{
         m_ball.draw();

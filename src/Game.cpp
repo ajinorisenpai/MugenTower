@@ -39,12 +39,12 @@ void Game::update(){
     }
     
 
-    // パドルにあたったらはね返る
-    if (m_ball.m_ballVelocity.y > 0 && m_paddle.collision(m_ball.m_ball))
-    {
-        // パドルの中心からの距離に応じてはね返る向きを変える
-        m_ball.m_ballVelocity = Vec2((m_ball.m_ball.x - m_paddle.center().x) * 10, -m_ball.m_ballVelocity.y).setLength(m_ball.speed);
-    }
+//    // パドルにあたったらはね返る
+//    if (m_ball.m_ballVelocity.y > 0 && m_paddle.collision(m_ball.m_ball))
+//    {
+//        // パドルの中心からの距離に応じてはね返る向きを変える
+//        m_ball.m_ballVelocity = Vec2((m_ball.m_ball.x - m_paddle.center().x) * 10, -m_ball.m_ballVelocity.y).setLength(m_ball.speed);
+//    }
 }
 void Game::draw() const {
     {
