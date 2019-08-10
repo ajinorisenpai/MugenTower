@@ -27,7 +27,7 @@ public:
     Title(const InitData& init)
     : IScene(init) {}
     void update() override;
-    void draw() const override；
+    void draw() const override;
     
 };
 

@@ -20,7 +20,8 @@ void Main()
     manager
     .add<Title>(State::Title)
     .add<Game>(State::Game)
-    .setFadeColor(ColorF(1.0));
+    .setFadeColor(ColorF(0.0))
+    ;
     
     while (System::Update())
     {

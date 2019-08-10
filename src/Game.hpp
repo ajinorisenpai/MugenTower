@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "GameInfo.h"
 #include <Siv3D.hpp>
-
+#include "Player.hpp"
 
 
 // ゲームシーン
@@ -35,7 +35,7 @@ private:
     Circle m_ball = Circle(400, 400, 8);
     
     // パドル
-    Rect m_paddle = Rect(Arg::center(Cursor::Pos().x, 500), 60, 10);
+    class Player m_paddle = Player();
     
     // スコア
     int32 m_score = 0;
