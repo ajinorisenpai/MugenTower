@@ -24,10 +24,10 @@ public:
     Game* GetGame(){
         return m_Game;
     }
-    Bullet(Game* m_Game,double x,double y){
+    Bullet(Game* m_Game,double x,double y):
+    m_Game(m_Game){
         pos.x = x;
         pos.y = y;
-        m_Game = m_Game;
     }
     bool collision(Rect& c){
         return m_ball.intersects(c);

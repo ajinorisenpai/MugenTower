@@ -27,8 +27,28 @@ void Bullet::update(int32& HP){
     {
         HP-=1;
     }
-    if(m_ballVelocity.y > 0 && GetGame()->GetPlayer().collision(m_ball)){
+    
+    if(m_ballVelocity.y > 0 && GetGame()->GetPlayer()->collision(m_ball)){
         // パドルの中心からの距離に応じてはね返る向きを変える
-        m_ballVelocity = Vec2((m_ball.x - GetGame()->GetPlayer().center().x) * 10, -m_ballVelocity.y).setLength(speed);
+        m_ballVelocity = Vec2((m_ball.x - GetGame()->GetPlayer()->center().x) * 10, -m_ballVelocity.y).setLength(speed);
+    }
+    
+    for(auto it = GetGame()->GetEnemy().begin();it!=GetGame()->GetEnemy().end();++it){
+        // ボールとブロックが交差していたら
+        if (it->collision(m_ball))
+        {
+            // ボールの向きを反転する
+            (it->rect.bottom().intersects(m_ball) || it->rect.top().intersects(m_ball) ? m_ballVelocity.y : m_ballVelocity.x) *= -1;
+            
+            // ブロックを配列から削除（イテレータが無効になるので注意）
+            GetGame()->GetEnemy().erase(it);
+            
+            // スコアを加算
+            GetGame()->m_score++;
+            
+            // これ以上チェックしない
+            break;
+        }
+        
     }
 }

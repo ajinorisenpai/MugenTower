@@ -39,11 +39,13 @@ private:
     
     
     class Player m_paddle = Player();
-    // スコア
-    int32 m_score = 0;
+    
     int32 HP = 1;
 public:
-    Player GetPlayer(){return m_paddle;}
+    Player* GetPlayer(){return &m_paddle;}
+    Array<Enemy>& GetEnemy(){return m_blocks;}
+    // スコア
+    int32 m_score = 0;
     Game(const InitData& init)
     : IScene(init)
     {
