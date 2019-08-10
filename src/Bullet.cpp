@@ -6,3 +6,5 @@
 //
 
 #include "Bullet.hpp"
+
+#include "Game.hpp"

@@ -12,6 +12,7 @@ void Game::update(){
     
     m_ball.update(HP);
     
+    
     if(HP<=0){
         changeScene(State::Title);
         getData().highScore = Max(getData().highScore, m_score);
@@ -37,9 +38,7 @@ void Game::update(){
         }
     }
     
-    
- 
-    
+
     // パドルにあたったらはね返る
     if (m_ball.m_ballVelocity.y > 0 && m_paddle.collision(m_ball.m_ball))
     {
@@ -50,7 +49,7 @@ void Game::update(){
 void Game::draw() const {
     {
         FontAsset(U"Score")(m_score).drawAt(Scene::Center().x, 30);
-        
+        FontAsset(U"Score")(U"HP : "+Format(HP)).drawAt(Scene::Center().x+250, 30);
         // すべてのブロックを描画する
         for (const auto& block : m_blocks)
         {

@@ -34,7 +34,7 @@ private:
     
     // ボール
 //    Circle m_ball = Circle(400, 400, 8);
-    class Bullet m_ball = Bullet(400,400);
+    class Bullet m_ball = Bullet(this,400,400);;
     // パドル
     class Player m_paddle = Player();
     

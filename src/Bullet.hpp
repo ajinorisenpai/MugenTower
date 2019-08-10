@@ -11,18 +11,20 @@
 #include <stdio.h>
 #include "GameInfo.h"
 #include <Siv3D.hpp>
+class Game;
 
 class Bullet{
 private:
     s3d::Vec2 pos = Vec2(400,400);
-    
+    class Game* m_Game;
 public:
     static constexpr double speed = 480.0;
     Vec2 m_ballVelocity = Vec2(0, -speed);
     Circle m_ball = Circle(pos.x,pos.y,8);
-    Bullet(double x,double y){
+    Bullet(Game* m_Game,double x,double y){
         pos.x = x;
         pos.y = y;
+        m_Game = m_Game;
     }
     bool collision(Rect& c){
         return m_ball.intersects(c);
@@ -46,6 +48,7 @@ public:
         {
             HP-=1;
         }
+    
     }
     
     void draw() const{
