@@ -40,7 +40,7 @@ private:
     
     // スコア
     int32 m_score = 0;
-    
+    int32 HP = 1;
 public:
     
     Game(const InitData& init)
@@ -57,6 +57,7 @@ public:
     
     //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
     void draw() const override;
+    
     
 };
 

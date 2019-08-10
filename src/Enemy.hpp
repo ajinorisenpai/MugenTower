@@ -21,12 +21,13 @@ public:
         rect = Rect(p.x * Enemy::blockSize.x, 60 + p.y * Enemy::blockSize.y,
                     Enemy::blockSize.x,Enemy::blockSize.y);
     }
-
+    bool collision(Circle& c){
+        return rect.intersects(c);
+    }
     void update(){
         
     }
     
-    //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
     void draw() const{
         rect.stretched(-1).draw(HSV(rect.y - 40));
     };

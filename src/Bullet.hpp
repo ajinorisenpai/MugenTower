@@ -28,10 +28,24 @@ public:
         return m_ball.intersects(c);
     }
     
-    void update(){
+    void update(int32& HP){
         // ボールを移動
         m_ball.moveBy(m_ballVelocity * Scene::DeltaTime());
-        
+        // 天井にぶつかったらはね返る
+        if (m_ball.y < 0 && m_ballVelocity.y < 0)
+        {
+            m_ballVelocity.y *= -1;
+        }
+        // 左右の壁にぶつかったらはね返る
+        if ((m_ball.x < 0 && m_ballVelocity.x < 0) ||
+            (Scene::Width() < m_ball.x && m_ballVelocity.x > 0))
+        {
+            m_ballVelocity.x *= -1;
+        }
+        if (m_ball.y > Scene::Height())
+        {
+            HP-=1;
+        }
     }
     
     void draw() const{

@@ -10,13 +10,18 @@ void Game::update(){
     // パドルを操作
     m_paddle.update();
     
-    m_ball.update();
+    m_ball.update(HP);
+    
+    if(HP<=0){
+        changeScene(State::Title);
+        getData().highScore = Max(getData().highScore, m_score);
+    };
     
     // ブロックを順にチェック
     for (auto it = m_blocks.begin(); it != m_blocks.end(); ++it)
     {
         // ボールとブロックが交差していたら
-        if (it->rect.intersects(m_ball.m_ball))
+        if (it->collision(m_ball.m_ball))
         {
             // ボールの向きを反転する
             (it->rect.bottom().intersects(m_ball.m_ball) || it->rect.top().intersects(m_ball.m_ball) ? m_ball.m_ballVelocity.y : m_ball.m_ballVelocity.x) *= -1;
@@ -32,23 +37,8 @@ void Game::update(){
         }
     }
     
-    // 天井にぶつかったらはね返る
-    if (m_ball.m_ball.y < 0 && m_ball.m_ballVelocity.y < 0)
-    {
-        m_ball.m_ballVelocity.y *= -1;
-    }
     
-    if (m_ball.m_ball.y > Scene::Height())
-    {
-        changeScene(State::Title);
-        getData().highScore = Max(getData().highScore, m_score);
-    }
-    
-    // 左右の壁にぶつかったらはね返る
-    if ((m_ball.m_ball.x < 0 && m_ball.m_ballVelocity.x < 0) || (Scene::Width() < m_ball.m_ball.x && m_ball.m_ballVelocity.x > 0))
-    {
-        m_ball.m_ballVelocity.x *= -1;
-    }
+ 
     
     // パドルにあたったらはね返る
     if (m_ball.m_ballVelocity.y > 0 && m_paddle.collision(m_ball.m_ball))
