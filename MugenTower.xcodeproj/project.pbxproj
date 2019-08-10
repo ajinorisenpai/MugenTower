@@ -70,6 +70,7 @@
 		ED7AF07B22FE9D6600FCDB83 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		ED7AF07D22FE9D8200FCDB83 /* Title.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Title.cpp; sourceTree = "<group>"; };
 		ED7AF07E22FE9D8200FCDB83 /* Title.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Title.hpp; sourceTree = "<group>"; };
+		ED7AF08022FEA5B100FCDB83 /* GameInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 			children = (
 				2C1778991CE0AA7C00BB8AD0 /* Main.cpp */,
 				ED7AF07A22FE9D6600FCDB83 /* Game.cpp */,
+				ED7AF08022FEA5B100FCDB83 /* GameInfo.h */,
 				ED7AF07B22FE9D6600FCDB83 /* Game.hpp */,
 				ED7AF07D22FE9D8200FCDB83 /* Title.cpp */,
 				ED7AF07E22FE9D8200FCDB83 /* Title.hpp */,
