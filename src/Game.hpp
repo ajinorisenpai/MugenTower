@@ -13,6 +13,7 @@
 #include <Siv3D.hpp>
 #include "Player.hpp"
 #include "Bullet.hpp"
+#include "Enemy.hpp"
 
 // ゲームシーン
 class Game : public SceneManager<State, GameData>::Scene
@@ -20,14 +21,14 @@ class Game : public SceneManager<State, GameData>::Scene
 private:
     
     // ブロックのサイズ
-    static constexpr Size blockSize = Size(40, 20);
+//    static constexpr Size blockSize = Size(40, 20);
     
     // ボールの速さ
 //    static constexpr double speed = 480.0;
     
     // ブロックの配列
-    Array<Rect> m_blocks;
-    
+//    Array<Rect> m_blocks;
+    Array<Enemy> m_blocks;
     // ボールの速度
 //    Vec2 m_ballVelocity = Vec2(0, -speed);
     
@@ -46,9 +47,10 @@ public:
     : IScene(init)
     {
         // 横 (Scene::Width() / blockSize.x) 個、縦 5 個のブロックを配列に追加する
-        for (auto p : step(Size((Scene::Width() / blockSize.x), 5)))
+        for (auto p : step(Size((Scene::Width() / Enemy::blockSize.x), 5)))
         {
-            m_blocks << Rect(p.x * blockSize.x, 60 + p.y * blockSize.y, blockSize);
+            m_blocks << Enemy(Rect(p.x * Enemy::blockSize.x, 60 + p.y * Enemy::blockSize.y,
+                                   Enemy::blockSize.x,Enemy::blockSize.y));
         }
     }
     

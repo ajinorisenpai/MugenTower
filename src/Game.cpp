@@ -4,7 +4,7 @@
 //
 //  Created by 坂井創一 on 2019/08/10.
 //
-
+  
 #include "Game.hpp"
 void Game::update(){
     // パドルを操作
@@ -16,10 +16,10 @@ void Game::update(){
     for (auto it = m_blocks.begin(); it != m_blocks.end(); ++it)
     {
         // ボールとブロックが交差していたら
-        if (it->intersects(m_ball.m_ball))
+        if (it->rect.intersects(m_ball.m_ball))
         {
             // ボールの向きを反転する
-            (it->bottom().intersects(m_ball.m_ball) || it->top().intersects(m_ball.m_ball) ? m_ball.m_ballVelocity.y : m_ball.m_ballVelocity.x) *= -1;
+            (it->rect.bottom().intersects(m_ball.m_ball) || it->rect.top().intersects(m_ball.m_ball) ? m_ball.m_ballVelocity.y : m_ball.m_ballVelocity.x) *= -1;
             
             // ブロックを配列から削除（イテレータが無効になるので注意）
             m_blocks.erase(it);
@@ -64,7 +64,7 @@ void Game::draw() const {
         // すべてのブロックを描画する
         for (const auto& block : m_blocks)
         {
-            block.stretched(-1).draw(HSV(block.y - 40));
+            block.rect.stretched(-1).draw(HSV(block.rect.y - 40));
         }
         
         // ボールを描く
