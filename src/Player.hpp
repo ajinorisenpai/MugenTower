@@ -14,13 +14,17 @@
 
 class Player{
 private:
-    
-public:
     Rect rect = Rect(Arg::center(Cursor::Pos().x, 500), 60, 10);
+public:
+    
     Player(){
     }
     bool collision(Circle& c){
         return rect.intersects(c);
+    }
+    
+    s3d::Vec2 center(){
+        return rect.center();
     }
     
     void update(){

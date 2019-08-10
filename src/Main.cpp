@@ -13,7 +13,7 @@ void Main()
     FontAsset::Register(U"Score", 36, Typeface::Bold);
     
     // 背景色を設定
-    Scene::SetBackground(ColorF(0.2, 0.8, 0.4));
+    Scene::SetBackground(ColorF(0.6, 0.2, 0.8));
     
     // シーンと遷移時の色を設定
     SceneManager<State, GameData> manager;

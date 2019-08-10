@@ -27,7 +27,7 @@ void Title::update(){
     }
 }
 void Title::draw() const{
-    const String titleText = U"ブロックくずし";
+    const String titleText = U"ゲームタイトル";
     const Vec2 center(Scene::Center().x, 120);
     FontAsset(U"Title")(titleText).drawAt(center.movedBy(4, 6), ColorF(0.0, 0.5));
     FontAsset(U"Title")(titleText).drawAt(center);

@@ -9,8 +9,6 @@
 
 void Game::update(){
     // パドルを操作
-//    m_paddle = Rect(Arg::center(Cursor::Pos().x, 500), 60, 10);
-//
     m_paddle.update();
     
     // ボールを移動
@@ -58,7 +56,7 @@ void Game::update(){
     if (m_ballVelocity.y > 0 && m_paddle.collision(m_ball))
     {
         // パドルの中心からの距離に応じてはね返る向きを変える
-        m_ballVelocity = Vec2((m_ball.x - m_paddle.rect.center().x) * 10, -m_ballVelocity.y).setLength(speed);
+        m_ballVelocity = Vec2((m_ball.x - m_paddle.center().x) * 10, -m_ballVelocity.y).setLength(speed);
     }
 }
 void Game::draw() const {
