@@ -1,7 +1,7 @@
 //
 //  Game.hpp
 //  empty
-//
+// 
 //  Created by 坂井創一 on 2019/08/10.
 //
 
@@ -49,8 +49,7 @@ public:
         // 横 (Scene::Width() / blockSize.x) 個、縦 5 個のブロックを配列に追加する
         for (auto p : step(Size((Scene::Width() / Enemy::blockSize.x), 5)))
         {
-            m_blocks << Enemy(Rect(p.x * Enemy::blockSize.x, 60 + p.y * Enemy::blockSize.y,
-                                   Enemy::blockSize.x,Enemy::blockSize.y));
+            m_blocks << Enemy(p);
         }
     }
     

@@ -64,7 +64,7 @@ void Game::draw() const {
         // すべてのブロックを描画する
         for (const auto& block : m_blocks)
         {
-            block.rect.stretched(-1).draw(HSV(block.rect.y - 40));
+            block.draw();
         }
         
         // ボールを描く
