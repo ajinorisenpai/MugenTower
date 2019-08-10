@@ -20,24 +20,11 @@ class Game : public SceneManager<State, GameData>::Scene
 {
 private:
     
-    // ブロックのサイズ
-//    static constexpr Size blockSize = Size(40, 20);
-    
-    // ボールの速さ
-//    static constexpr double speed = 480.0;
-    
-    // ブロックの配列
-//    Array<Rect> m_blocks;
     Array<Enemy> m_blocks;
-    // ボールの速度
-//    Vec2 m_ballVelocity = Vec2(0, -speed);
-    
     // ボール
-//    Circle m_ball = Circle(400, 400, 8);
-    class Bullet m_ball = Bullet(this,400,400);;
+    class Bullet m_ball = Bullet(this,400,400);
+    
     // パドル
-    
-    
     class Player m_paddle = Player();
     
     int32 HP = 1;

@@ -40,11 +40,12 @@ void Bullet::update(int32& HP){
             // ボールの向きを反転する
             (it->rect.bottom().intersects(m_ball) || it->rect.top().intersects(m_ball) ? m_ballVelocity.y : m_ballVelocity.x) *= -1;
             
+            // スコアを加算
+            GetGame()->m_score++;
+            
             // ブロックを配列から削除（イテレータが無効になるので注意）
             GetGame()->GetEnemy().erase(it);
             
-            // スコアを加算
-            GetGame()->m_score++;
             
             // これ以上チェックしない
             break;
