@@ -14,7 +14,7 @@
 #include "Player.hpp"
 #include "Bullet.hpp"
 #include "Enemy.hpp"
-
+#include "Actor.hpp"
 // ゲームシーン
 class Game : public SceneManager<State, GameData>::Scene
 {
@@ -23,14 +23,16 @@ private:
     Array<Enemy> m_blocks;
     // ボール
     class Bullet m_ball = Bullet(this,400,400);
-    
+    Array<Bullet> playerBullets;
     // パドル
     class Player m_paddle = Player();
     
-    int32 HP = 1;
+    int32 HP = 14;
+    
 public:
-    Player* GetPlayer(){return &m_paddle;}
+    Player& GetPlayer() {return m_paddle;}
     Array<Enemy>& GetEnemy(){return m_blocks;}
+    Array<Bullet>& GetPlayerBullet(){return playerBullets;};
     // スコア
     int32 m_score = 0;
     Game(const InitData& init)
@@ -45,7 +47,7 @@ public:
     
     void update() override;
     
-    //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
+   //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
     void draw() const override;
     
     

@@ -33,6 +33,7 @@
 		2C6906D42298131500A427D0 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906CE2298131500A427D0 /* libopencv_imgproc.a */; };
 		2C6906D62298131800A427D0 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906D52298131800A427D0 /* libz.a */; };
 		2C6906D82298140F00A427D0 /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 2C6906D72298140F00A427D0 /* engine */; };
+		BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA63C42222FEF44A004B7335 /* Actor.cpp */; };
 		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
 		ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07D22FE9D8200FCDB83 /* Title.cpp */; };
 		ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF08222FEAE3000FCDB83 /* Player.cpp */; };
@@ -69,6 +70,8 @@
 		2C6906CE2298131500A427D0 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../lib/macOS/opencv/libopencv_imgproc.a; sourceTree = "<group>"; };
 		2C6906D52298131800A427D0 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
 		2C6906D72298140F00A427D0 /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = App/engine; sourceTree = "<group>"; };
+		BA63C42222FEF44A004B7335 /* Actor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Actor.cpp; sourceTree = "<group>"; };
+		BA63C42322FEF44A004B7335 /* Actor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actor.hpp; sourceTree = "<group>"; };
 		ED7AF07A22FE9D6600FCDB83 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		ED7AF07B22FE9D6600FCDB83 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		ED7AF07D22FE9D8200FCDB83 /* Title.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Title.cpp; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				ED7AF08022FEA5B100FCDB83 /* GameInfo.h */,
 				ED7AF08222FEAE3000FCDB83 /* Player.cpp */,
 				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
+				BA63C42222FEF44A004B7335 /* Actor.cpp */,
+				BA63C42322FEF44A004B7335 /* Actor.hpp */,
 				ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */,
 				ED7AF08922FEBF5900FCDB83 /* Enemy.hpp */,
 				ED7AF08522FEBB6F00FCDB83 /* Bullet.cpp */,
@@ -253,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */,
 				ED7AF08A22FEBF5900FCDB83 /* Enemy.cpp in Sources */,
 				ED7AF08722FEBB6F00FCDB83 /* Bullet.cpp in Sources */,
 				ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */,

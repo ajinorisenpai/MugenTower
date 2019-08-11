@@ -25,12 +25,13 @@ void Bullet::update(int32& HP){
     }
     if (m_ball.y > Scene::Height())
     {
-        HP-=1;
+//        HP-=1;
+        mState = State::Dead;
     }
     
-    if(m_ballVelocity.y > 0 && GetGame()->GetPlayer()->collision(m_ball)){
+    if(m_ballVelocity.y > 0 && GetGame()->GetPlayer().collision(m_ball)){
         // パドルの中心からの距離に応じてはね返る向きを変える
-        m_ballVelocity = Vec2((m_ball.x - GetGame()->GetPlayer()->center().x) * 10, -m_ballVelocity.y).setLength(speed);
+        m_ballVelocity = Vec2((m_ball.x - GetGame()->GetPlayer().center().x) * 10, -m_ballVelocity.y).setLength(speed);
     }
     
     for(auto it = GetGame()->GetEnemy().begin();it!=GetGame()->GetEnemy().end();++it){

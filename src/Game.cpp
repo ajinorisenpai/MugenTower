@@ -12,10 +12,18 @@ void Game::update(){
     
     m_ball.update(HP);
     
+    
     if(HP<=0){
         changeScene(State::Title);
         getData().highScore = Max(getData().highScore, m_score);
     };
+    
+    for(auto actor : playerBullets){
+        if(actor.isDead()){
+            changeScene(State::Title);
+            //actorの削除
+        }
+    }
 }
 void Game::draw() const {
     {

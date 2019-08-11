@@ -11,9 +11,11 @@
 #include <stdio.h>
 #include "GameInfo.h"
 #include <Siv3D.hpp>
+#include "Actor.cpp"
+
 class Game;
 
-class Bullet{
+class Bullet:public Actor{
 private:
     s3d::Vec2 pos = Vec2(400,400);
     class Game* m_Game;

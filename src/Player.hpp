@@ -11,8 +11,9 @@
 #include <stdio.h>
 #include "GameInfo.h"
 #include <Siv3D.hpp>
+#include "Actor.hpp"
 
-class Player{
+class Player:public Actor{
 private:
     s3d::Vec2 pos = Vec2(500,500);
     Rect rect = Rect(pos.x,pos.y, 60, 10);
@@ -31,6 +32,9 @@ public:
     void update(){
         if(KeyLeft.pressed()) pos.x -= 10;
         if(KeyRight.pressed()) pos.x += 10;
+        
+        
+        
         rect = Rect(pos.x,pos.y, 60, 10);
     }
     
