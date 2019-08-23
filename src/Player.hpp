@@ -18,9 +18,7 @@ private:
     s3d::Vec2 pos = Vec2(500,500);
     Rect rect = Rect(pos.x,pos.y, 60, 10);
 public:
-    
-    Player(){
-    }
+    Player(Game* m_game):Actor(m_game){}
     bool collision(Circle& c){
         return rect.intersects(c);
     }
@@ -30,14 +28,16 @@ public:
     }
     
     void update(){
-        if(KeyLeft.pressed()) pos.x -= 10;
-        if(KeyRight.pressed()) pos.x += 10;
-        
-        
-        
         rect = Rect(pos.x,pos.y, 60, 10);
     }
     
+    void move_left(){
+        pos.x -= 10;
+    }
+    void move_right(){
+        pos.x += 10;
+    }
+    void shot_bullet();
     //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
     void draw() const{
         rect.draw();

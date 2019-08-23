@@ -6,3 +6,7 @@
 //
 
 #include "Player.hpp"
+#include "Game.hpp"
+void Player::shot_bullet(){
+    GetGame()->make_bullet(pos.x,pos.y); 
+}

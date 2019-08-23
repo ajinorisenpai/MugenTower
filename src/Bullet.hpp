@@ -11,25 +11,17 @@
 #include <stdio.h>
 #include "GameInfo.h"
 #include <Siv3D.hpp>
-#include "Actor.cpp"
-
-class Game;
+#include "Actor.hpp"
 
 class Bullet:public Actor{
 private:
-    s3d::Vec2 pos = Vec2(400,400);
-    class Game* m_Game;
+    s3d::Vec2 pos;
+    
 public:
     static constexpr double speed = 480.0;
     Vec2 m_ballVelocity = Vec2(0, -speed);
     Circle m_ball = Circle(pos.x,pos.y,8);
-    Game* GetGame(){
-        return m_Game;
-    }
-    Bullet(Game* m_Game,double x,double y):
-    m_Game(m_Game){
-        pos.x = x;
-        pos.y = y;
+    Bullet(Game* m_game,double x,double y):Actor(m_game),pos(Vec2(x,y)){
     }
     bool collision(Rect& c){
         return m_ball.intersects(c);

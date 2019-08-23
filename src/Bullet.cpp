@@ -6,7 +6,6 @@
 //
 
 #include "Bullet.hpp"
-
 #include "Game.hpp"
 
 void Bullet::update(int32& HP){

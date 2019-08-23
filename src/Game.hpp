@@ -25,7 +25,7 @@ private:
     class Bullet m_ball = Bullet(this,400,400);
     Array<Bullet> playerBullets;
     // パドル
-    class Player m_paddle = Player();
+    class Player m_paddle = Player(this);
     
     int32 HP = 14;
     
@@ -47,6 +47,9 @@ public:
     
     void update() override;
     
+    void make_bullet(double x,double y){
+        playerBullets << Bullet(this,x,y);
+    }
    //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
     void draw() const override;
     

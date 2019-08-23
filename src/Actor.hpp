@@ -10,6 +10,9 @@
 
 #include <stdio.h>
 #include <Siv3D.hpp>
+
+class Game;
+
 class Actor{
 protected:
     enum State{
@@ -17,13 +20,16 @@ protected:
         Dead
     };
     State mState;
+    class Game* m_game;
+    
+    class Game* GetGame() { return m_game; }
 public:
     virtual void update(){};
     virtual void draw(){};
-    Actor():mState(State::Active){
-    }
+    Actor(Game* m_game);
     bool isDead() const {
         return mState==Dead;
     }
+    
 };
 #endif /* Actor_hpp */
