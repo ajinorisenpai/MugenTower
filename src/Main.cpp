@@ -8,12 +8,12 @@
 void Main()
 {
     // 使用するフォントアセットを登録
-    FontAsset::Register(U"Title", 120, U"example/font/AnnyantRoman/AnnyantRoman.ttf");
+    FontAsset::Register(U"Title", 80, U"example/font/AnnyantRoman/AnnyantRoman.ttf");
     FontAsset::Register(U"Menu", 30, Typeface::Regular);
     FontAsset::Register(U"Score", 36, Typeface::Bold);
     
     // 背景色を設定
-    Scene::SetBackground(ColorF(0.6, 0.2, 0.8));
+    Scene::SetBackground(ColorF(0.1, 0.1, 0.1));
     
     // シーンと遷移時の色を設定
     SceneManager<State, GameData> manager;

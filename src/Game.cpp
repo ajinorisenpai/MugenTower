@@ -6,6 +6,8 @@
 //
   
 #include "Game.hpp"
+#include "Burn.hpp"
+
 void Game::update(){
     // パドルを操作
     if(KeyLeft.pressed()) m_paddle.move_left();
@@ -14,24 +16,16 @@ void Game::update(){
     
     m_paddle.update();
     
-    m_ball.update(HP);
+//    m_ball.update(HP);
     for (auto& bullet : playerBullets)
     {
         bullet.update(HP);
     }
-    
     if(HP<=0){
         changeScene(State::Title);
         getData().highScore = Max(getData().highScore, m_score);
     };
     
-    for(auto actor : playerBullets){
-        if(actor.isDead()){
-//            changeScene(State::Title);
-            //actorの削除
-            
-        }
-    }
     playerBullets.remove_if([](const auto& actor){return actor.isDead();});
 }
 void Game::draw() const {
@@ -44,9 +38,6 @@ void Game::draw() const {
         {
             block.draw();
         }
-        
-        // ボールを描く
-        m_ball.draw();
         // パドルを描く
         m_paddle.draw();
         for (const auto& bullet : playerBullets)

@@ -16,7 +16,8 @@
 class Player:public Actor{
 private:
     s3d::Vec2 pos = Vec2(500,500);
-    Rect rect = Rect(pos.x,pos.y, 60, 10);
+    s3d::Vec2 size = Vec2(60,10);
+    Rect rect = Rect(pos.x-size.x/2,pos.y-size.y/2, size.x, size.y);
 public:
     Player(Game* m_game):Actor(m_game){}
     bool collision(Circle& c){
@@ -28,7 +29,7 @@ public:
     }
     
     void update(){
-        rect = Rect(pos.x,pos.y, 60, 10);
+        rect = Rect(pos.x-size.x/2,pos.y-size.y/2, size.x, size.y);
     }
     
     void move_left(){
