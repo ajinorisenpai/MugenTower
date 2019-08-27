@@ -35,6 +35,7 @@
 		2C6906D82298140F00A427D0 /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 2C6906D72298140F00A427D0 /* engine */; };
 		BA4BC55223150E640089D66F /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC55023150E640089D66F /* Animation.cpp */; };
 		BA4BC5542315278F0089D66F /* Image in Resources */ = {isa = PBXBuildFile; fileRef = BA4BC5532315278F0089D66F /* Image */; };
+		BA4BC5582315546B0089D66F /* Stage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC5562315546B0089D66F /* Stage.cpp */; };
 		BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA63C42222FEF44A004B7335 /* Actor.cpp */; };
 		BA8204542313789A001693FE /* Burn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA8204522313789A001693FE /* Burn.cpp */; };
 		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
@@ -77,6 +78,8 @@
 		BA4BC55123150E640089D66F /* Animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Animation.hpp; sourceTree = "<group>"; };
 		BA4BC5532315278F0089D66F /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Image; path = App/Image; sourceTree = "<group>"; };
 		BA4BC55523153A810089D66F /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
+		BA4BC5562315546B0089D66F /* Stage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stage.cpp; sourceTree = "<group>"; };
+		BA4BC5572315546B0089D66F /* Stage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stage.hpp; sourceTree = "<group>"; };
 		BA63C42222FEF44A004B7335 /* Actor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Actor.cpp; sourceTree = "<group>"; };
 		BA63C42322FEF44A004B7335 /* Actor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actor.hpp; sourceTree = "<group>"; };
 		BA8204522313789A001693FE /* Burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Burn.cpp; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				ED7AF08022FEA5B100FCDB83 /* GameInfo.h */,
 				ED7AF08222FEAE3000FCDB83 /* Player.cpp */,
 				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
+				BA4BC5562315546B0089D66F /* Stage.cpp */,
+				BA4BC5572315546B0089D66F /* Stage.hpp */,
 				BA4BC55023150E640089D66F /* Animation.cpp */,
 				BA4BC55123150E640089D66F /* Animation.hpp */,
 				BA63C42222FEF44A004B7335 /* Actor.cpp */,
@@ -276,6 +281,7 @@
 			files = (
 				BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */,
 				ED7AF08A22FEBF5900FCDB83 /* Enemy.cpp in Sources */,
+				BA4BC5582315546B0089D66F /* Stage.cpp in Sources */,
 				ED7AF08722FEBB6F00FCDB83 /* Bullet.cpp in Sources */,
 				ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */,
 				BA8204542313789A001693FE /* Burn.cpp in Sources */,
