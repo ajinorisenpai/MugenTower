@@ -24,7 +24,7 @@ private:
     
     Array<Enemy> m_blocks;
     Array<Bullet> playerBullets;
-    class Player m_paddle = Player(this);
+    Player m_paddle = Player(this);
     int32 HP = 50;
     
 public:

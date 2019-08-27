@@ -9,8 +9,18 @@
 #define PlayerState_hpp
 
 #include <stdio.h>
+#include <Siv3D.hpp>
 //
 //
+class PlayerState{
 
+public:
+    virtual PlayerState* draw(){
+        return NULL;
+    }
+    virtual PlayerState* update(){
+        return NULL;
+    }
+};
 
 #endif /* PlayerState_hpp */

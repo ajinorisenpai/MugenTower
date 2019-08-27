@@ -9,10 +9,7 @@
 #include "Burn.hpp"
 
 void Game::update(){
-    // パドルを操作
-    if(KeyLeft.pressed()) m_paddle.move_left();
-    if(KeyRight.pressed()) m_paddle.move_right();
-    if(KeySpace.pressed()) m_paddle.shot_bullet();
+
     
     m_paddle.update();
     
