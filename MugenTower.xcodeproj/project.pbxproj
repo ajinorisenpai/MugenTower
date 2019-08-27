@@ -33,11 +33,10 @@
 		2C6906D42298131500A427D0 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906CE2298131500A427D0 /* libopencv_imgproc.a */; };
 		2C6906D62298131800A427D0 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906D52298131800A427D0 /* libz.a */; };
 		2C6906D82298140F00A427D0 /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 2C6906D72298140F00A427D0 /* engine */; };
-		BA4BC5402313E2860089D66F /* IdleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC53E2313E2860089D66F /* IdleState.cpp */; };
 		BA4BC55223150E640089D66F /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC55023150E640089D66F /* Animation.cpp */; };
+		BA4BC5542315278F0089D66F /* Image in Resources */ = {isa = PBXBuildFile; fileRef = BA4BC5532315278F0089D66F /* Image */; };
 		BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA63C42222FEF44A004B7335 /* Actor.cpp */; };
 		BA8204542313789A001693FE /* Burn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA8204522313789A001693FE /* Burn.cpp */; };
-		ED7A3C62231007B700E95914 /* PlayerState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7A3C60231007B700E95914 /* PlayerState.cpp */; };
 		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
 		ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07D22FE9D8200FCDB83 /* Title.cpp */; };
 		ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF08222FEAE3000FCDB83 /* Player.cpp */; };
@@ -74,16 +73,14 @@
 		2C6906CE2298131500A427D0 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../lib/macOS/opencv/libopencv_imgproc.a; sourceTree = "<group>"; };
 		2C6906D52298131800A427D0 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
 		2C6906D72298140F00A427D0 /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = App/engine; sourceTree = "<group>"; };
-		BA4BC53E2313E2860089D66F /* IdleState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IdleState.cpp; sourceTree = "<group>"; };
-		BA4BC53F2313E2860089D66F /* IdleState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IdleState.hpp; sourceTree = "<group>"; };
 		BA4BC55023150E640089D66F /* Animation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		BA4BC55123150E640089D66F /* Animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Animation.hpp; sourceTree = "<group>"; };
+		BA4BC5532315278F0089D66F /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Image; path = App/Image; sourceTree = "<group>"; };
+		BA4BC55523153A810089D66F /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		BA63C42222FEF44A004B7335 /* Actor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Actor.cpp; sourceTree = "<group>"; };
 		BA63C42322FEF44A004B7335 /* Actor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actor.hpp; sourceTree = "<group>"; };
 		BA8204522313789A001693FE /* Burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Burn.cpp; sourceTree = "<group>"; };
 		BA8204532313789A001693FE /* Burn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Burn.hpp; sourceTree = "<group>"; };
-		ED7A3C60231007B700E95914 /* PlayerState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerState.cpp; sourceTree = "<group>"; };
-		ED7A3C61231007B700E95914 /* PlayerState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayerState.hpp; sourceTree = "<group>"; };
 		ED7AF07A22FE9D6600FCDB83 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		ED7AF07B22FE9D6600FCDB83 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		ED7AF07D22FE9D8200FCDB83 /* Title.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Title.cpp; sourceTree = "<group>"; };
@@ -136,6 +133,8 @@
 			children = (
 				2C6906D72298140F00A427D0 /* engine */,
 				2C1778921CE0A9EA00BB8AD0 /* Info.plist */,
+				BA4BC55523153A810089D66F /* Todo.md */,
+				BA4BC5532315278F0089D66F /* Image */,
 				2C1778A21CE0B65500BB8AD0 /* icon.icns */,
 				2C1778981CE0AA7C00BB8AD0 /* src */,
 				2C1778851CE0A9EA00BB8AD0 /* Products */,
@@ -162,7 +161,6 @@
 				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
 				BA4BC55023150E640089D66F /* Animation.cpp */,
 				BA4BC55123150E640089D66F /* Animation.hpp */,
-				ED7A3C5F2310079700E95914 /* Player */,
 				BA63C42222FEF44A004B7335 /* Actor.cpp */,
 				BA63C42322FEF44A004B7335 /* Actor.hpp */,
 				ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */,
@@ -205,17 +203,6 @@
 				2C6906B12298123200A427D0 /* OpenAL.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		ED7A3C5F2310079700E95914 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				ED7A3C60231007B700E95914 /* PlayerState.cpp */,
-				BA4BC53E2313E2860089D66F /* IdleState.cpp */,
-				BA4BC53F2313E2860089D66F /* IdleState.hpp */,
-				ED7A3C61231007B700E95914 /* PlayerState.hpp */,
-			);
-			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4BC5542315278F0089D66F /* Image in Resources */,
 				2C6906D82298140F00A427D0 /* engine in Resources */,
 				2C1778A31CE0B65500BB8AD0 /* icon.icns in Resources */,
 			);
@@ -287,14 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */,
-				BA4BC5402313E2860089D66F /* IdleState.cpp in Sources */,
 				ED7AF08A22FEBF5900FCDB83 /* Enemy.cpp in Sources */,
 				ED7AF08722FEBB6F00FCDB83 /* Bullet.cpp in Sources */,
 				ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */,
 				BA8204542313789A001693FE /* Burn.cpp in Sources */,
 				ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */,
 				2C17789A1CE0AA7C00BB8AD0 /* Main.cpp in Sources */,
-				ED7A3C62231007B700E95914 /* PlayerState.cpp in Sources */,
 				ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */,
 				BA4BC55223150E640089D66F /* Animation.cpp in Sources */,
 			);
