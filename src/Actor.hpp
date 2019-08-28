@@ -14,13 +14,14 @@
 class Game;
 
 class Actor{
+private:
+    class Game* m_game;
 protected:
     enum State{
         Active,
         Dead
     };
     State mState;
-    class Game* m_game;
     
     class Game* GetGame() { return m_game; }
 public:

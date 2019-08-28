@@ -63,24 +63,7 @@ public:
         return HitBox.center();
     }
     
-    void update(){
-        pos += velocity;
-        handle_input();
-        frame+=1;
-        //壁との衝突
-        if(pos.x<0){
-            velocity.x = 0;
-            pos.x = 0;
-        }
-        if(pos.x+size.x>Scene::Width()){
-            velocity.x = 0;
-            pos.x = Scene::Width()-size.x;
-        }
-        
-        
-        HitBox = Rect(pos.x+HitBox_size.x,pos.y+HitBox_size.y/2, HitBox_size.x,HitBox_size.y);
-        
-    }
+    void update();
     void handle_input();
     
     void shot_bullet();

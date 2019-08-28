@@ -39,10 +39,10 @@ public:
     : IScene(init)
     {
         // 横 (Scene::Width() / blockSize.x) 個、縦 5 個のブロックを配列に追加する
-        for (auto p : step(Size((Scene::Width() / Enemy::blockSize.x), 5)))
-        {
-            m_blocks << Enemy(p);
-        }
+//        for (auto p : step(Size((Scene::Width() / Enemy::blockSize.x), 5)))
+//        {
+//            m_blocks << Enemy(p);
+//        }
     }
     
     void update() override;

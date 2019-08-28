@@ -13,6 +13,7 @@ GetGame()->make_bullet(center().x,center().y);
 
 void Player::handle_input(){
     float d_time = Scene::DeltaTime();
+    //いずれ状態遷移を表で書き直す
     //攻撃ボタン
     if(KeyC.pressed()){
         shot_bullet();
@@ -28,6 +29,7 @@ void Player::handle_input(){
     }
     
     //移動ボタン+Zダッシュ
+    State before_st = p_st;
     switch(p_st){
         case Idle:
             if(velocity.x > 15*d_time) velocity.x -=30*d_time;
@@ -36,22 +38,16 @@ void Player::handle_input(){
             if(KeyLeft.pressed()){
                 if(facing_left){
                     p_st = State::Walk;
-                    frame = 0;
                 }else{
-                    p_st = State::Idle;
                     facing_left = !facing_left;
                     pos.x -=10;
-                    frame = 0;
                 }
             }else if(KeyRight.pressed()){
                 if(!facing_left){
                     p_st = State::Walk;
-                    frame = 0;
                 }else{
-                    p_st = State::Idle;
                     facing_left = !facing_left;
                     pos.x +=10;
-                    frame = 0;
                 }
             }
             break;
@@ -60,7 +56,6 @@ void Player::handle_input(){
                 if(facing_left){
                     if(KeyZ.pressed()){
                         p_st = State::Run;
-                        frame = 0;
                         velocity.x = std::max<double>(-walkspeed_limit,velocity.x-walkspeed*d_time);
                     }else{
                         velocity.x = std::max<double>(-walkspeed_limit,velocity.x-walkspeed*d_time);
@@ -68,14 +63,12 @@ void Player::handle_input(){
                 }else{
                     p_st = State::Idle;
                     facing_left = !facing_left;
-                    frame = 0;
                 }
             }else
                 if(KeyRight.pressed()){
                     if(!facing_left){
                         if(KeyZ.pressed()){
                             p_st = State::Run;
-                            frame = 0;
                             velocity.x = std::min<double>(walkspeed_limit,velocity.x+walkspeed*d_time);
                         }else{
                             velocity.x =
@@ -84,7 +77,6 @@ void Player::handle_input(){
                     }else{
                         p_st = State::Idle;
                         facing_left = !facing_left;
-                        frame = 0;
                     }
                 }else{
                     p_st = State::Idle;
@@ -96,30 +88,26 @@ void Player::handle_input(){
                     velocity.x = std::max<double>(-Runspeed_limit,velocity.x-20*d_time);
                     if(!KeyZ.pressed()){
                        p_st = State::Walk;
-                        frame = 0;
                     }
                 }else{
                     p_st = State::Idle;
                     facing_left = !facing_left;
-                    frame = 0;
                 }
-            }else
-                if(KeyRight.pressed()){
-                    if(!facing_left){
-                        if(KeyZ.pressed()){
-                            velocity.x = std::min<double>(Runspeed_limit,velocity.x+20*d_time);
-                        }else{
-                            p_st = State::Walk;
-                            velocity.x = std::min<double>(Runspeed_limit,velocity.x+20*d_time);
-                        }
+            }else if(KeyRight.pressed()){
+                if(!facing_left){
+                    if(KeyZ.pressed()){
+                        velocity.x = std::min<double>(Runspeed_limit,velocity.x+20*d_time);
                     }else{
-                        p_st = State::Idle;
-                        facing_left = !facing_left;
-                        frame = 0;
+                        p_st = State::Walk;
+                        velocity.x = std::min<double>(Runspeed_limit,velocity.x+20*d_time);
                     }
                 }else{
                     p_st = State::Idle;
+                    facing_left = !facing_left;
                 }
+            }else{
+                p_st = State::Idle;
+            }
             break;
         case Jump:
             if(velocity.x > 0) velocity.x -=3*d_time;
@@ -153,6 +141,10 @@ void Player::handle_input(){
             }
             break;
     }
+    //もし前の状態と違うなら初期化
+    if(p_st != before_st){
+        frame = 0;
+    }
     
 }
 
@@ -180,3 +172,37 @@ const void Player::draw() const{
     effect.update();
     HitBox.drawFrame();
 };
+
+void Player::update(){
+    // 移動
+    pos += velocity;
+    
+    
+    if(velocity.x > 0){
+        //右との衝突
+        if(pos.x+size.x>Scene::Width()){
+            velocity.x = 0;
+            pos.x = Scene::Width()-size.x;
+        }
+    }else{
+        //左との衝突
+        if(pos.x < 0){
+            velocity.x = 0;
+            pos.x = 0;
+        }
+    }
+    if(velocity.y > 0){
+        //上との衝突
+    }else{
+        //下との衝突
+    }
+    
+    handle_input();
+    frame+=1;
+    
+    
+    
+    HitBox = Rect(pos.x+HitBox_size.x,pos.y+HitBox_size.y/2, HitBox_size.x,HitBox_size.y);
+        
+    
+}
