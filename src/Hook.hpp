@@ -17,7 +17,9 @@ private:
     Vec2 pos;
     Vec2 s_pos;
     Effect effect;
-    double length = 40.0;
+    const double HOOK_LENGTH = 15.0;
+    const double HOOK_TIME = 30.0;
+    double length = 0.0;
     static constexpr double speed = 480.0;
     Vec2 Velocity;
     bool hooked = false;
@@ -34,7 +36,7 @@ public:
         s_pos = tpos;
         pos = tpos;
         Velocity = dir;
-        length = 20.0;
+        length = HOOK_LENGTH;
         mState = State::Active;
         hooked = false;
         once_hooked = false;

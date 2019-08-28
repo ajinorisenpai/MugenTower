@@ -11,6 +11,8 @@
 void Game::update(){
     
     camera.update();
+    
+    camera.setScale(1.0);
     m_player.update();
     
 //    m_ball.update(HP);
@@ -33,7 +35,6 @@ void Game::draw() const{
         
         game_stage.draw();
 
-        // パドルを描く
         m_player.draw();
         for (const auto& bullet : playerBullets)
         {
@@ -44,6 +45,6 @@ void Game::draw() const{
         
     }
     FontAsset(U"Score")(m_score).drawAt(Scene::Center().x, 30);
-    FontAsset(U"Score")(U"HP : "+Format(HP)).drawAt(Scene::Center().x+250, 30);
-    FontAsset(U"Score")(playerBullets.size()).drawAt(Scene::Center().x-250,30);
+//    FontAsset(U"Score")(U"HP : "+Format(HP)).drawAt(Scene::Center().x+250, 30);
+//    FontAsset(U"Score")(playerBullets.size()).drawAt(Scene::Center().x-250,30);
 }

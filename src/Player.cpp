@@ -13,6 +13,7 @@ void Player::shot_bullet(){
 
 }
 void Player::shot_hook(){
+    hook_se.playOneShot(0.5);
     Vec2 dir;
     if(facing_left) dir = Vec2(-100.0*sin(hooktime+M_PI/2),100.0*cos(hooktime+M_PI/2));
     else dir = Vec2(100.0*sin(hooktime+M_PI/2),100.0*cos(hooktime+M_PI/2));;
@@ -20,9 +21,10 @@ void Player::shot_hook(){
 }
 void Player::handle_input(){
     
+    if(p_st==Dead || p_st==Clear) return;
     float d_time = Scene::DeltaTime();
     //いずれ状態遷移を表で書き直す
-    //攻撃ボタン
+//    攻撃ボタン
 //    if(KeyC.pressed()){
 //        shot_bullet();
 //    }
@@ -30,7 +32,12 @@ void Player::handle_input(){
     
     
     //ジャンプボタン
-    if(KeyX.pressed()&&p_st!=State::Jump){
+    if(KeyX.pressed()&&p_st!=Jump){
+        if(GetGame()->GetMapData()[(int)(pos.x+32.0)/64][(int)(pos.y+32.0)/64]==8){
+            GameClear();
+            return;
+        }
+        jump_se.playOneShot(0.2);
         p_st = State::Jump;
         frame = 0;
         effect.add<Burn>(Vec2(pos.x+size.x/2,pos.y+size.y));
@@ -162,6 +169,10 @@ void Player::handle_input(){
             break;
         case Hooking:
             break;
+        case Dead:
+            break;
+        case Clear:
+            break;
     }
     //もし前の状態と違うなら初期化
     if(p_st != before_st){
@@ -170,62 +181,64 @@ void Player::handle_input(){
     
 }
 
+void Player::GameClear(){
+    p_st = Clear;
+}
 bool Player::hooked(Vec2 to_pos){
     velocity += (to_pos-pos).normalize()*1;
-    p_st = State::Jump;
+    if(p_st!=Dead) p_st = State::Jump;
     return false;
 }
 void Player::update(){
-    if(p_st == Dead){
+    
+    HitCheck();
+    frame+=1;
+    if(p_st == Dead||p_st == Clear){
         if(KeyC.pressed()){
             GetGame()->GameOver();
         }
         return;
     }
-    HitCheck();
-    // 移動
     pos += velocity;
     
     
     handle_input();
-    frame+=1;
     HitBox = Rect(pos.x,pos.y,size.x,size.y);
         
     
 }
 void Player::GameOver(){
+    gameover_se.playOneShot(0.5);
     p_st = Dead;
 }
 void Player::HitCheck(){
-    
+    if(p_st==Dead || p_st == Clear) return;
 //    Print<< (int)pos.x/64 << U", " << (int)pos.y/64;
     int hit_r = 26.0;
     int hit_l = 45.0;
     int hit_u = 66.0;
     int hit_d = 20.0;
     int hit_mid = 36.0;
-    auto checkMapData = [this](const Vec2 po)->bool{
-        if(po.x<0||po.y<0||po.x>=64*300||po.y>=64*300) return false;
-        return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64]!=0;
-    };
-    auto deathCheck = [this](const Vec2 po)->bool{
-        if(po.x<0||po.y<0||po.x>=64*300||po.y>=64*300) return false;
-        return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64]==3;
+    auto checkMapData = [this](const Vec2 po)->int{
+        if(po.x<0||po.y<0||po.x>=64*100||po.y>=64*100) return 4;
+        return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64];
     };
     pos.y+= hit_u;
     if(velocity.y > 0){
-        if(checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) ||
-           checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) ||
-           checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))){
-            if(deathCheck(Vec2(pos.x+hit_r,pos.y+velocity.y)) ||
-               deathCheck(Vec2(pos.x+hit_mid,pos.y+velocity.y)) ||
-               deathCheck(Vec2(pos.x+hit_l,pos.y+velocity.y))){
-                GameOver();
-            }
+        if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 4){
+            GameOver();
+            return;
+        }
+        if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
+           checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
+           checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 1){
+            landing_se.playOneShot(1.0);
             velocity.y = 0;
-            if(!checkMapData(Vec2(pos.x+hit_r,pos.y-64+velocity.y)) &&
-               !checkMapData(Vec2(pos.x+hit_mid,pos.y-64+velocity.y)) &&
-               !checkMapData(Vec2(pos.x+hit_l,pos.y-64+velocity.y)))
+            if(!((checkMapData(Vec2(pos.x+hit_r,pos.y-64+velocity.y)) |
+               checkMapData(Vec2(pos.x+hit_mid,pos.y-64+velocity.y)) |
+               checkMapData(Vec2(pos.x+hit_l,pos.y-64+velocity.y))) & 1))
                 pos.y = (floor(pos.y/64)+1)*64-0.1;
             hooktime = 0;
             can_hook = false;
@@ -234,33 +247,39 @@ void Player::HitCheck(){
         }
         
     }else if(velocity.y == 0){
-        if(!checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) &&
-           !checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) &&
-           !checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))){
-            if(deathCheck(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))){
-                GameOver();
-            }
+        if(!((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y)))&1)){
             p_st = State::Jump;
         }
-        
-        
+        if((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))) & 4){
+            GameOver();
+            return;
+        }
     }
     
     pos.y-=hit_u;
     pos.y+=hit_d;
     if(velocity.y < 0){
         
+        if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
+            checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 4){
+            GameOver();
+            return;
+        }
         //上との衝突
-        if(checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) ||
-           checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) ||
-           checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))){
-            if(deathCheck(Vec2(pos.x+hit_mid,pos.y+velocity.y))){
-                GameOver();
-            }
+        if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
+           checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
+           checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) &1){
+            landing_se.playOneShot(1.0);
+            
             velocity.y = 0;
-            if(!checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) &&
-               !checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y)) &&
-               !checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)))
+            if((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y))   |
+               checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y)) |
+               checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)))==0)
                 pos.y = (floor(pos.y/64)+1)*64;
             
         }
@@ -269,19 +288,26 @@ void Player::HitCheck(){
     pos.x += hit_l;
     if(velocity.x > 0){
         //右との衝突
-        if(checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d)) ||
-           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) ||
-           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))){
-            if(deathCheck(Vec2(pos.x+velocity.x,pos.y+hit_mid))){
-                GameOver();
-            }
+        if((
+            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d))   |
+            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) |
+            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))
+            ) & 4){
+            GameOver();
+            return;
+        }
+        if((checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d)) |
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) |
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))) & 1){
+            if(velocity.x>5.0) landing_se.playOneShot(1.0);
+            
             velocity.x = 0;
-            if(checkMapData(Vec2(pos.x,pos.y+hit_d)) ||
-               checkMapData(Vec2(pos.x,pos.y+hit_mid)) ||
-               checkMapData(Vec2(pos.x,pos.y+hit_u)))
-                pos.x = (floor(pos.x/64))*64-0.1;
+            if((checkMapData(Vec2(pos.x,pos.y+hit_d)) |
+               checkMapData(Vec2(pos.x,pos.y+hit_mid)) |
+               checkMapData(Vec2(pos.x,pos.y+hit_u))) == 1)
+                pos.x = (floor(pos.x/64))*64-0.2;
             else
-                pos.x = (floor(pos.x/64)+1)*64-0.1;
+                pos.x = (floor(pos.x/64)+1)*64-0.2;
             
             
         }
@@ -290,16 +316,22 @@ void Player::HitCheck(){
     pos.x += hit_r;
     if(velocity.x < 0){
         //左との衝突
-        if(checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d))||
-           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid))||
-           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))){
-            if(deathCheck(Vec2(pos.x+velocity.x,pos.y+hit_mid))){
-                GameOver();
-            }
+        if((checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d))   |
+            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) |
+            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))
+            ) & 4){
+            GameOver();
+            return;
+        }
+        if((checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d))   |
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) |
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))) & 1){
+            if(velocity.x<-5.0) landing_se.playOneShot(1.0);
+            
             velocity.x = 0;
-            if(checkMapData(Vec2(pos.x,pos.y+hit_d)) ||
-               checkMapData(Vec2(pos.x,pos.y+hit_mid)) ||
-               checkMapData(Vec2(pos.x,pos.y+hit_u)))
+            if((checkMapData(Vec2(pos.x,pos.y+hit_d)) |
+               checkMapData(Vec2(pos.x,pos.y+hit_mid)) |
+               checkMapData(Vec2(pos.x,pos.y+hit_u))) & 1)
                 pos.x = (floor(pos.x/64)-1)*64+0.1;
             else
                 pos.x = (floor(pos.x/64))*64+0.1;
@@ -307,6 +339,7 @@ void Player::HitCheck(){
         }
     }
     pos.x -= hit_r;
+    
     
     
 }
@@ -340,10 +373,24 @@ const void Player::draw() const{
             }
             break;
         case Dead:
-            effect.add<Burn>(pos+Vec2(Random<float>(-10.0,10.0),Random<float>(-10.0,10.0)));
+            FontAsset(U"Title")(U"げーむおーばー").drawAt(Vec2(pos.x, pos.y-120.0).movedBy(4, 6), ColorF(0.0, 0.5));
+            FontAsset(U"Title")(U"げーむおーばー").drawAt(Vec2(pos.x, pos.y-120.0));
+            if(frame%40<27) FontAsset(U"Score")(U"Press C key").drawAt(Vec2(pos.x, pos.y-200.0));
+           if(frame%2==0) effect.add<Burn>(pos+Vec2(Random<float>(-10.0,10.0),Random<float>(-10.0,10.0)));
+            break;
+        case Clear:
+            FontAsset(U"Title")(U"げーむくりあ").drawAt(Vec2(pos.x, pos.y-120.0).movedBy(4, 6), ColorF(0.0, 0.5));
+            FontAsset(U"Title")(U"げーむくりあ").drawAt(Vec2(pos.x, pos.y-120.0));
+           texture_positive(72*(anime_positive[(frame/10) % anime_positive.size()]),0,72,72).mirrored(facing_left).draw(pos.x,pos.y);
+            if(frame%5==0)
+                effect.add<Burn>(pos+Vec2(Random<float>(-200.0,200.0),Random<float>(-200.0,200.0)));
             break;
     }
-    
+//    int hit_r = 26.0;
+//    int hit_l = 45.0;
+//    int hit_u = 66.0;
+//    int hit_d = 20.0;
+//    int hit_mid = 36.0;
+//    Rect(hit_r+pos.x,hit_u+pos.y,hit_l-hit_r,hit_d-hit_u).drawFrame();
     effect.update();
-    //    HitBox.drawFrame();
 };

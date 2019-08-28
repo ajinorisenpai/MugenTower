@@ -24,11 +24,12 @@ class Game : public SceneManager<State, GameData>::Scene
 private:
     Array<Enemy> m_blocks;
     Array<Bullet> playerBullets;
-    Stage game_stage;
-    Player m_player = Player(this);
+    Stage game_stage = Stage(U"Levels/tutorial.csv");
+    Player m_player = Player(this,game_stage.GetStartPos());
     int32 HP = 50;
     Hook m_hook = Hook(this,Vec2(0.0,0.0),Vec2(0.0,0.0));
-    Camera2D camera;
+    Camera2D camera = Camera2D(1.0,Camera2DParameters::MouseOnly());
+    Audio HouseBGM;
 public:
     
     Player& GetPlayer() {return m_player;}
@@ -45,6 +46,9 @@ public:
 //        {
 //            m_blocks << Enemy(p);
 //        }
+        HouseBGM = Audio(U"Sound/HouseBGM.mp3");
+        HouseBGM.setLoop(true);
+        HouseBGM.play();
     }
     
     void update() override;
@@ -61,6 +65,7 @@ public:
         m_hook.init(pos,dir);
     }
     void GameOver(){
+        HouseBGM.stop();
         changeScene(State::Title);
     }
 };

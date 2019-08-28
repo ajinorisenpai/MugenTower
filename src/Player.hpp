@@ -30,6 +30,7 @@ private:
     Texture texture_run;
     Texture texture_jump;
     Texture texture_turn;
+    Texture texture_positive;
     bool facing_left = false;
     int frame = 0;
     Array<int> anime_walk = {0,1,2,3,4,5,6,8,10,11,12,13};
@@ -39,6 +40,7 @@ private:
     Array<int> anime_jump_up = {0,1};
     Array<int> anime_jump_fall = {5,6};
     Array<int> anime_jump_mid = {2,3,4};
+    Array<int> anime_positive = {0,1,2,3,4,5};
     enum State{
         Idle,
         Walk,
@@ -46,7 +48,8 @@ private:
         Jump,
         Turn,
         Hooking,
-        Dead
+        Dead,
+        Clear
     };
     State p_st = State::Idle;
     const double hookspeed = 3.0; //フックアクションの動作速度
@@ -57,21 +60,32 @@ private:
     void shot_hook();
     void shot_bullet();
     bool can_shoot_hook =false;
+    Audio jump_se;
+    Audio landing_se;
+    Audio hook_se;
+    Audio gameover_se;
 public:
     void GameOver();
-    s3d::Vec2 pos = Vec2(400,300);
-    Player(Game* m_game):Actor(m_game){
+    void GameClear();
+    s3d::Vec2 pos = Vec2(100,100);
+    Player(Game* m_game,Vec2 pos):Actor(m_game),pos(pos){
         texture_walk = Texture(U"Image/Unitychan/Unitychan_Walk.png");
         texture_idle = Texture(U"Image/Unitychan/Unitychan_Idle.png");
         texture_turn = Texture(U"Image/Unitychan/Unitychan_Turn.png");
         texture_run = Texture(U"Image/Unitychan/Unitychan_Run.png");
         texture_jump = Texture(U"Image/Unitychan/Unitychan_Jump.png");
+        texture_positive = Texture(U"Image/Unitychan/Unitychan_Positive.png");
+        jump_se = Audio(U"Sound/jump.wav");
+        landing_se = Audio(U"Sound/landing.wav");
+        hook_se = Audio(U"Sound/hook.wav");
+        
+        gameover_se = Audio(U"Sound/gameover.wav");
     }
     bool collision(Circle& c){
         return HitBox.intersects(c);
     }
     Vec2 center(){
-        if(facing_left) return Vec2(pos.x-72.0,pos.y-32.0);
+        if(facing_left) return Vec2(pos.x-110.0,pos.y-32.0);
         else return Vec2(pos.x+172.0,pos.y-32.0);
     }
     bool hooked(Vec2 to_pos);
