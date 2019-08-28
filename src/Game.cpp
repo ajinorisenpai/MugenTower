@@ -11,7 +11,7 @@
 void Game::update(){
 
     
-    m_paddle.update();
+    m_player.update();
     
 //    m_ball.update(HP);
     for (auto& bullet : playerBullets)
@@ -26,20 +26,21 @@ void Game::update(){
     playerBullets.remove_if([](const auto& actor){return actor.isDead();});
 }
 void Game::draw() const {
+    geme_stage.draw();
+    
+    FontAsset(U"Score")(m_score).drawAt(Scene::Center().x, 30);
+    FontAsset(U"Score")(U"HP : "+Format(HP)).drawAt(Scene::Center().x+250, 30);
+    FontAsset(U"Score")(playerBullets.size()).drawAt(Scene::Center().x-250,30);
+    // すべてのブロックを描画する
+    for (const auto& block : m_blocks)
     {
-        FontAsset(U"Score")(m_score).drawAt(Scene::Center().x, 30);
-        FontAsset(U"Score")(U"HP : "+Format(HP)).drawAt(Scene::Center().x+250, 30);
-        FontAsset(U"Score")(playerBullets.size()).drawAt(Scene::Center().x-250,30);
-        // すべてのブロックを描画する
-        for (const auto& block : m_blocks)
-        {
-            block.draw();
-        }
-        // パドルを描く
-        m_paddle.draw();
-        for (const auto& bullet : playerBullets)
-        {
-            bullet.draw();
-        }
+        block.draw();
     }
+    // パドルを描く
+    m_player.draw();
+    for (const auto& bullet : playerBullets)
+    {
+        bullet.draw();
+    }
+    
 }

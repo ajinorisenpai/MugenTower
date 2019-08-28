@@ -14,7 +14,7 @@ class Enemy{
 private:
     
 public:
-    static constexpr Size blockSize = Size(40,20);
+    static constexpr Size blockSize = Size(64,64);
     Rect rect;
     
     Enemy(Vec2 p){

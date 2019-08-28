@@ -17,13 +17,15 @@
 class Player:public Actor{
 private:
     Effect effect;
-    const int jump_power = 20;
+    const int jump_power = 14;
     const int Runspeed_limit = 10;
     const int walkspeed_limit = 6;
+    const int walkspeed = 20;
     s3d::Vec2 pos = Vec2(500,500);
     s3d::Vec2 size = Vec2(72,72);
+    Vec2 HitBox_size = Vec2(20,40);
     Vec2 velocity = Vec2(0,0);
-    Rect HitBox = Rect(pos.x,pos.y, size.x, size.y);
+    Rect HitBox;
     Texture texture_walk;
     Texture texture_idle;
     Texture texture_run;
@@ -35,8 +37,9 @@ private:
     Array<int> anime_idle = {0,1,2,3};
     Array<int> anime_turn = {0,1,2};
     Array<int> anime_run = {0,1,2,3,4,5,6,8,10,11,12,13};
-    Array<int> anime_jump = {0,1};
-    
+    Array<int> anime_jump_up = {0,1};
+    Array<int> anime_jump_fall = {5,6};
+    Array<int> anime_jump_mid = {2,3,4};
     enum State{
         Idle,
         Walk,
@@ -64,8 +67,6 @@ public:
         pos += velocity;
         handle_input();
         frame+=1;
-        effect.update();
-        
         //壁との衝突
         if(pos.x<0){
             velocity.x = 0;
@@ -77,7 +78,7 @@ public:
         }
         
         
-        HitBox = Rect(pos.x,pos.y, size.x,size.y);
+        HitBox = Rect(pos.x+HitBox_size.x,pos.y+HitBox_size.y/2, HitBox_size.x,HitBox_size.y);
         
     }
     void handle_input();

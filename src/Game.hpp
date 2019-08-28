@@ -16,6 +16,7 @@
 #include "Enemy.hpp"
 #include "Actor.hpp"
 #include "Burn.hpp"
+#include "Stage.hpp"
 
 // ゲームシーン
 class Game : public SceneManager<State, GameData>::Scene
@@ -24,11 +25,12 @@ private:
     
     Array<Enemy> m_blocks;
     Array<Bullet> playerBullets;
-    Player m_paddle = Player(this);
+    Stage geme_stage;
+    Player m_player = Player(this);
     int32 HP = 50;
     
 public:
-    Player& GetPlayer() {return m_paddle;}
+    Player& GetPlayer() {return m_player;}
     Array<Enemy>& GetEnemy(){return m_blocks;}
     Array<Bullet>& GetPlayerBullet(){return playerBullets;};
     // スコア

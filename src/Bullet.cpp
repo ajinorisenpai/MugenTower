@@ -28,16 +28,19 @@ void Bullet::update(int32& HP){
         effect.add<Burn>(pos);
         m_ballVelocity.x *= -1;
     }
-    if (pos.y > Scene::Height())
+    if (pos.y > Scene::Height() && m_ballVelocity.y > 0)
     {
-        HP-=1;
-        mState = State::Dead;
+        effect.add<Burn>(pos);
+        m_ballVelocity.y *= -1;
+        
     }
     
     if(m_ballVelocity.y > 0 && GetGame()->GetPlayer().collision(m_ball)){
         // パドルの中心からの距離に応じてはね返る向きを変える
         effect.add<Burn>(pos);
-        m_ballVelocity = Vec2((pos.x - GetGame()->GetPlayer().center().x) * 10, -m_ballVelocity.y).setLength(speed);
+//        m_ballVelocity = Vec2((pos.x - GetGame()->GetPlayer().center().x) * 10, -m_ballVelocity.y).setLength(speed);
+        HP-=1;
+        mState = State::Dead;
     }
     
     for(auto it = GetGame()->GetEnemy().begin();it!=GetGame()->GetEnemy().end();++it){
@@ -58,5 +61,4 @@ void Bullet::update(int32& HP){
             break;
         }
     }
-    effect.update();
 }

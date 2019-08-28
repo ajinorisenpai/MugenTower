@@ -33,6 +33,7 @@ public:
     void draw() const{
         
         m_ball.draw();
+        effect.update();
     };
     
 };
