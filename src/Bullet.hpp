@@ -19,10 +19,10 @@ private:
     Effect effect;
 public:
     static constexpr double speed = 480.0;
-    Vec2 m_ballVelocity = Vec2(0, -speed);
+    Vec2 m_ballVelocity = Vec2(speed, Random<double>(-1.0,1.0));
     Circle m_ball = Circle(pos.x,pos.y,2);
     
-    Bullet(Game* m_game,double x,double y):Actor(m_game),pos(Vec2(x,y)){
+    Bullet(Game* m_game,Vec2 pos,Vec2 dir):Actor(m_game),pos(pos),m_ballVelocity(dir){
     }
     bool collision(Rect& c){
         return m_ball.intersects(c);

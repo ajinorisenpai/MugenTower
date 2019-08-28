@@ -15,31 +15,9 @@ void Bullet::update(int32& HP){
     
     pos.moveBy(m_ballVelocity * Scene::DeltaTime());
     m_ball = Circle(pos.x,pos.y,4);
-    // 天井にぶつかったらはね返る
-    if (pos.y < 0 && m_ballVelocity.y < 0)
-    {
-        effect.add<Burn>(pos);
-        m_ballVelocity.y *= -1;
-    }
-    // 左右の壁にぶつかったらはね返る
-    if ((pos.x < 0 && m_ballVelocity.x < 0) ||
-        (Scene::Width() < pos.x && m_ballVelocity.x > 0))
-    {
-        effect.add<Burn>(pos);
-        m_ballVelocity.x *= -1;
-    }
-    if (pos.y > Scene::Height() && m_ballVelocity.y > 0)
-    {
-        effect.add<Burn>(pos);
-        m_ballVelocity.y *= -1;
-        
-    }
     
-    if(m_ballVelocity.y > 0 && GetGame()->GetPlayer().collision(m_ball)){
-        // パドルの中心からの距離に応じてはね返る向きを変える
-        effect.add<Burn>(pos);
-//        m_ballVelocity = Vec2((pos.x - GetGame()->GetPlayer().center().x) * 10, -m_ballVelocity.y).setLength(speed);
-        HP-=1;
+    if(abs(pos.x - GetGame()->GetPlayer().pos.x) >1000){
+        
         mState = State::Dead;
     }
     

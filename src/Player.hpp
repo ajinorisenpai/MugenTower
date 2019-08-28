@@ -21,7 +21,6 @@ private:
     const int Runspeed_limit = 10;
     const int walkspeed_limit = 6;
     const int walkspeed = 20;
-    s3d::Vec2 pos = Vec2(500,500);
     s3d::Vec2 size = Vec2(72,72);
     Vec2 HitBox_size = Vec2(20,40);
     Vec2 velocity = Vec2(0,0);
@@ -45,10 +44,22 @@ private:
         Walk,
         Run,
         Jump,
-        Turn
+        Turn,
+        Hooking,
+        Dead
     };
     State p_st = State::Idle;
+    const double hookspeed = 3.0; //フックアクションの動作速度
+    double hooktime;
+    bool can_hook;//フックアクションできる状態か
+    
+    bool hook_flag;//フックアクション中かどうか
+    void shot_hook();
+    void shot_bullet();
+    bool can_shoot_hook =false;
 public:
+    void GameOver();
+    s3d::Vec2 pos = Vec2(400,300);
     Player(Game* m_game):Actor(m_game){
         texture_walk = Texture(U"Image/Unitychan/Unitychan_Walk.png");
         texture_idle = Texture(U"Image/Unitychan/Unitychan_Idle.png");
@@ -60,15 +71,17 @@ public:
         return HitBox.intersects(c);
     }
     Vec2 center(){
-        return HitBox.center();
+        if(facing_left) return Vec2(pos.x-72.0,pos.y-32.0);
+        else return Vec2(pos.x+172.0,pos.y-32.0);
     }
+    bool hooked(Vec2 to_pos);
     
     void update();
     void handle_input();
     
-    void shot_bullet();
     //メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
     const void draw() const;
+    void HitCheck();
     
 };
 

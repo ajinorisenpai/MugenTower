@@ -8,16 +8,26 @@
 #include "Player.hpp"
 #include "Game.hpp"
 void Player::shot_bullet(){
-GetGame()->make_bullet(center().x,center().y); 
-}
+    if(facing_left) GetGame()->make_bullet(Vec2(pos.x+30.0,pos.y+32.0),Vec2(-480.0,Random<double>(-100.0,100.0)));
+    else GetGame()->make_bullet(Vec2(pos.x+50.0,pos.y+32.0),Vec2(480.0,Random<double>(-100.0,100.0)));
 
+}
+void Player::shot_hook(){
+    Vec2 dir;
+    if(facing_left) dir = Vec2(-100.0*sin(hooktime+M_PI/2),100.0*cos(hooktime+M_PI/2));
+    else dir = Vec2(100.0*sin(hooktime+M_PI/2),100.0*cos(hooktime+M_PI/2));;
+    return GetGame()->make_hook(Vec2(pos.x+32.0,pos.y+30.0),dir*20);
+}
 void Player::handle_input(){
+    
     float d_time = Scene::DeltaTime();
     //いずれ状態遷移を表で書き直す
     //攻撃ボタン
-    if(KeyC.pressed()){
-        shot_bullet();
-    }
+//    if(KeyC.pressed()){
+//        shot_bullet();
+//    }
+    State before_st = p_st;
+    
     
     //ジャンプボタン
     if(KeyX.pressed()&&p_st!=State::Jump){
@@ -26,10 +36,11 @@ void Player::handle_input(){
         effect.add<Burn>(Vec2(pos.x+size.x/2,pos.y+size.y));
         velocity.y = -jump_power;
         pos.y -= 1;
+        can_hook = false;
     }
     
-    //移動ボタン+Zダッシュ
-    State before_st = p_st;
+    
+    
     switch(p_st){
         case Idle:
             if(velocity.x > 15*d_time) velocity.x -=30*d_time;
@@ -40,14 +51,12 @@ void Player::handle_input(){
                     p_st = State::Walk;
                 }else{
                     facing_left = !facing_left;
-                    pos.x -=10;
                 }
             }else if(KeyRight.pressed()){
                 if(!facing_left){
                     p_st = State::Walk;
                 }else{
                     facing_left = !facing_left;
-                    pos.x +=10;
                 }
             }
             break;
@@ -113,25 +122,36 @@ void Player::handle_input(){
             if(velocity.x > 0) velocity.x -=3*d_time;
             if(velocity.x < 0) velocity.x +=3*d_time;
             velocity.y+=20*d_time;
-            if(pos.y>=500) {
-                pos.y = 500;
-                velocity.y = 0;
-                p_st = State::Idle;
-            }
             if(KeyLeft.pressed()){
                 if(facing_left){
-                    if(velocity.x > -5) velocity.x-= 1 * d_time;
-                        else velocity.x = -5;
-                            }else{
+                    velocity.x-= 4 * d_time;
+                    
+                }else{
                                 facing_left = !facing_left;
-                            }
+                }
             }else if(KeyRight.pressed()){
                 if(!facing_left){
-                    if(velocity.x < 5) velocity.x += 1 * d_time;
-                        else velocity.x = 5;
-                            }else{
-                                facing_left = !facing_left;
-                            }
+                     velocity.x += 4 * d_time;
+                    
+                }else{
+                        facing_left = !facing_left;
+                }
+            }
+            //フックボタン
+            if(KeyX.pressed()){
+                if(can_hook){
+                    hooktime+=d_time*hookspeed;
+                    can_shoot_hook = true;
+                }
+            }else{
+                if(can_shoot_hook){
+                    shot_hook();
+                    hooktime = 0;
+                    can_shoot_hook = false;
+                }else{
+                    hooktime = 0;
+                    can_hook = true;
+                }
             }
             break;
         case Turn:
@@ -140,6 +160,8 @@ void Player::handle_input(){
                 facing_left = !facing_left;
             }
             break;
+        case Hooking:
+            break;
     }
     //もし前の状態と違うなら初期化
     if(p_st != before_st){
@@ -147,6 +169,148 @@ void Player::handle_input(){
     }
     
 }
+
+bool Player::hooked(Vec2 to_pos){
+    velocity += (to_pos-pos).normalize()*1;
+    p_st = State::Jump;
+    return false;
+}
+void Player::update(){
+    if(p_st == Dead){
+        if(KeyC.pressed()){
+            GetGame()->GameOver();
+        }
+        return;
+    }
+    HitCheck();
+    // 移動
+    pos += velocity;
+    
+    
+    handle_input();
+    frame+=1;
+    HitBox = Rect(pos.x,pos.y,size.x,size.y);
+        
+    
+}
+void Player::GameOver(){
+    p_st = Dead;
+}
+void Player::HitCheck(){
+    
+//    Print<< (int)pos.x/64 << U", " << (int)pos.y/64;
+    int hit_r = 26.0;
+    int hit_l = 45.0;
+    int hit_u = 66.0;
+    int hit_d = 20.0;
+    int hit_mid = 36.0;
+    auto checkMapData = [this](const Vec2 po)->bool{
+        if(po.x<0||po.y<0||po.x>=64*300||po.y>=64*300) return false;
+        return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64]!=0;
+    };
+    auto deathCheck = [this](const Vec2 po)->bool{
+        if(po.x<0||po.y<0||po.x>=64*300||po.y>=64*300) return false;
+        return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64]==3;
+    };
+    pos.y+= hit_u;
+    if(velocity.y > 0){
+        if(checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) ||
+           checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) ||
+           checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))){
+            if(deathCheck(Vec2(pos.x+hit_r,pos.y+velocity.y)) ||
+               deathCheck(Vec2(pos.x+hit_mid,pos.y+velocity.y)) ||
+               deathCheck(Vec2(pos.x+hit_l,pos.y+velocity.y))){
+                GameOver();
+            }
+            velocity.y = 0;
+            if(!checkMapData(Vec2(pos.x+hit_r,pos.y-64+velocity.y)) &&
+               !checkMapData(Vec2(pos.x+hit_mid,pos.y-64+velocity.y)) &&
+               !checkMapData(Vec2(pos.x+hit_l,pos.y-64+velocity.y)))
+                pos.y = (floor(pos.y/64)+1)*64-0.1;
+            hooktime = 0;
+            can_hook = false;
+            p_st = State::Idle;
+            
+        }
+        
+    }else if(velocity.y == 0){
+        if(!checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) &&
+           !checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) &&
+           !checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))){
+            if(deathCheck(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))){
+                GameOver();
+            }
+            p_st = State::Jump;
+        }
+        
+        
+    }
+    
+    pos.y-=hit_u;
+    pos.y+=hit_d;
+    if(velocity.y < 0){
+        
+        //上との衝突
+        if(checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) ||
+           checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) ||
+           checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))){
+            if(deathCheck(Vec2(pos.x+hit_mid,pos.y+velocity.y))){
+                GameOver();
+            }
+            velocity.y = 0;
+            if(!checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) &&
+               !checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y)) &&
+               !checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)))
+                pos.y = (floor(pos.y/64)+1)*64;
+            
+        }
+    }
+    pos.y-=hit_d;
+    pos.x += hit_l;
+    if(velocity.x > 0){
+        //右との衝突
+        if(checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d)) ||
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) ||
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))){
+            if(deathCheck(Vec2(pos.x+velocity.x,pos.y+hit_mid))){
+                GameOver();
+            }
+            velocity.x = 0;
+            if(checkMapData(Vec2(pos.x,pos.y+hit_d)) ||
+               checkMapData(Vec2(pos.x,pos.y+hit_mid)) ||
+               checkMapData(Vec2(pos.x,pos.y+hit_u)))
+                pos.x = (floor(pos.x/64))*64-0.1;
+            else
+                pos.x = (floor(pos.x/64)+1)*64-0.1;
+            
+            
+        }
+    }
+    pos.x -= hit_l;
+    pos.x += hit_r;
+    if(velocity.x < 0){
+        //左との衝突
+        if(checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d))||
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid))||
+           checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))){
+            if(deathCheck(Vec2(pos.x+velocity.x,pos.y+hit_mid))){
+                GameOver();
+            }
+            velocity.x = 0;
+            if(checkMapData(Vec2(pos.x,pos.y+hit_d)) ||
+               checkMapData(Vec2(pos.x,pos.y+hit_mid)) ||
+               checkMapData(Vec2(pos.x,pos.y+hit_u)))
+                pos.x = (floor(pos.x/64)-1)*64+0.1;
+            else
+                pos.x = (floor(pos.x/64))*64+0.1;
+            
+        }
+    }
+    pos.x -= hit_r;
+    
+    
+}
+
 
 const void Player::draw() const{
     switch(p_st){
@@ -163,46 +327,23 @@ const void Player::draw() const{
             texture_run(72*(anime_run[(frame/4) % anime_run.size()]),0,72,72).mirrored(facing_left).draw(pos.x,pos.y);
             break;
         case Jump:
+        case Hooking:
             if(velocity.y<-2)  texture_jump(72*(anime_jump_up[(frame/6) % anime_jump_up.size()]),0,72,72).mirrored(facing_left).draw(pos.x,pos.y);
             else if(velocity.y>=2) texture_jump(72*(anime_jump_fall[(frame/6) % anime_jump_fall.size()]),0,72,72).mirrored(facing_left).draw(pos.x,pos.y);
             else texture_jump(72*(anime_jump_mid[(frame/6) % anime_jump_mid.size()]),0,72,72).mirrored(facing_left).draw(pos.x,pos.y);
+            
+            if(hooktime>0){
+                Vec2 hookpos;
+                if(facing_left) hookpos = Vec2(pos.x+32.0,pos.y+32.0) + Vec2(-100.0*sin(hooktime+M_PI/2),100.0*cos(hooktime+M_PI/2));
+                else  hookpos = Vec2(pos.x+32.0,pos.y+32.0) + Vec2(100.0*sin(hooktime+M_PI/2),100.0*cos(hooktime+M_PI/2));
+                Circle(hookpos,20).drawFrame();
+            }
+            break;
+        case Dead:
+            effect.add<Burn>(pos+Vec2(Random<float>(-10.0,10.0),Random<float>(-10.0,10.0)));
             break;
     }
     
     effect.update();
-    HitBox.drawFrame();
+    //    HitBox.drawFrame();
 };
-
-void Player::update(){
-    // 移動
-    pos += velocity;
-    
-    
-    if(velocity.x > 0){
-        //右との衝突
-        if(pos.x+size.x>Scene::Width()){
-            velocity.x = 0;
-            pos.x = Scene::Width()-size.x;
-        }
-    }else{
-        //左との衝突
-        if(pos.x < 0){
-            velocity.x = 0;
-            pos.x = 0;
-        }
-    }
-    if(velocity.y > 0){
-        //上との衝突
-    }else{
-        //下との衝突
-    }
-    
-    handle_input();
-    frame+=1;
-    
-    
-    
-    HitBox = Rect(pos.x+HitBox_size.x,pos.y+HitBox_size.y/2, HitBox_size.x,HitBox_size.y);
-        
-    
-}
