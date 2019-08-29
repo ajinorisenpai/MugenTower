@@ -72,7 +72,16 @@ public:
             }
         }
         if(tutorial_flag){
+            FontAsset(U"Menu")(U"左右キーで移動").drawAt(Vec2(64*4,64*96), ColorF(0.25));
+            FontAsset(U"Menu")(U"Zキーでダッシュ").drawAt(Vec2(64*9,64*96), ColorF(0.25));
+            FontAsset(U"Menu")(U"Xキーでジャンプ").drawAt(Vec2(64*16,64*96), ColorF(0.25));
+        FontAsset(U"Menu")(U"ジャンプ中にXキーでワイヤーアクション").drawAt(Vec2(64*30,64*96), ColorF(0.25));
+        FontAsset(U"Menu")(U"押す長さによって角度を変えられる").drawAt(Vec2(64*30,64*97), ColorF(0.25));
             
+        FontAsset(U"Menu")(U"灰色ブロックはワイヤーが引っかからない").drawAt(Vec2(64*50,64*96), ColorF(0.25));
+       
+       FontAsset(U"Menu")(U"Cキーを長押しすれば周りを見ることができる").drawAt(Vec2(64*60,64*97), ColorF(0.25)); FontAsset(U"Menu")(U"赤色ブロックに当たるとゲームオーバー").drawAt(Vec2(64*70,64*96), ColorF(0.25));
+        FontAsset(U"Menu")(U"黄色い扉の前でジャンプするとゲームクリアだ").drawAt(Vec2(64*92,64*96), ColorF(0.25));
         }
     };
 };

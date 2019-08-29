@@ -24,7 +24,8 @@ class Game : public SceneManager<State, GameData>::Scene
 private:
     Array<Enemy> m_blocks;
     Array<Bullet> playerBullets;
-    Stage game_stage = Stage(U"Levels/tutorial.csv");
+    float camera_scale = 1.0;
+    Stage game_stage = Stage(getData().StageFile);
     Player m_player = Player(this,game_stage.GetStartPos());
     int32 HP = 50;
     Hook m_hook = Hook(this,Vec2(0.0,0.0),Vec2(0.0,0.0));
@@ -41,11 +42,6 @@ public:
     Game(const InitData& init)
     : IScene(init)
     {
-        // 横 (Scene::Width() / blockSize.x) 個、縦 5 個のブロックを配列に追加する
-//        for (auto p : step(Size((Scene::Width() / Enemy::blockSize.x), 5)))
-//        {
-//            m_blocks << Enemy(p);
-//        }
         HouseBGM = Audio(U"Sound/HouseBGM.mp3");
         HouseBGM.setLoop(true);
         HouseBGM.play();
@@ -56,7 +52,7 @@ public:
     void make_bullet(Vec2 pos,Vec2 dir){
         playerBullets << Bullet(this,pos,dir);
     }
-//メンバ関数の右側にconstをつけると、そのメンバ関数内ではメンバ変数の変更ができなくなる
+    
     void draw() const override;
     vector<vector<int>> GetMapData() const {
         return game_stage.GetMapData();

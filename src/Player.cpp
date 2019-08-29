@@ -183,6 +183,7 @@ void Player::handle_input(){
 
 void Player::GameClear(){
     p_st = Clear;
+    frame = 0;
 }
 bool Player::hooked(Vec2 to_pos){
     velocity += (to_pos-pos).normalize()*1;
@@ -193,7 +194,11 @@ void Player::update(){
     
     HitCheck();
     frame+=1;
-    if(p_st == Dead||p_st == Clear){
+    if(p_st==Clear){
+        if(frame > 110) GetGame()->GameOver();
+        return;
+    }
+    if(p_st == Dead){
         if(KeyC.pressed()){
             GetGame()->GameOver();
         }

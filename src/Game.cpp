@@ -11,11 +11,12 @@
 void Game::update(){
     
     camera.update();
-    
-    camera.setScale(1.0);
+    if(KeyC.pressed()) {
+        if(camera_scale >0.4) camera_scale *= 0.99;
+    }else if(camera_scale < 1) camera_scale += 0.02;
+    camera.setScale(camera_scale);
     m_player.update();
     
-//    m_ball.update(HP);
     for (auto& bullet : playerBullets)
     {
         bullet.update(HP);
@@ -44,7 +45,4 @@ void Game::draw() const{
         camera.draw(Palette::Orange);
         
     }
-    FontAsset(U"Score")(m_score).drawAt(Scene::Center().x, 30);
-//    FontAsset(U"Score")(U"HP : "+Format(HP)).drawAt(Scene::Center().x+250, 30);
-//    FontAsset(U"Score")(playerBullets.size()).drawAt(Scene::Center().x-250,30);
 }

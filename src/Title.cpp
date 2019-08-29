@@ -22,6 +22,22 @@ void Title::update(){
     
     if (m_tutorialButton.leftClicked())
     {
+        getData().StageFile = U"Levels/tutorial.csv";
+        changeScene(State::Game);
+    }
+    if (m_stage1Button.leftClicked())
+    {
+        getData().StageFile = U"Levels/stage1.csv";
+        changeScene(State::Game);
+    }
+    if (m_stage2Button.leftClicked())
+    {
+        getData().StageFile = U"Levels/stage2.csv";
+        changeScene(State::Game);
+    }
+    if (m_stage3Button.leftClicked())
+    {
+        getData().StageFile = U"Levels/stage3.csv";
         changeScene(State::Game);
     }
     
@@ -55,6 +71,6 @@ void Title::draw() const{
     Rect(0, 500, Scene::Width(), Scene::Height() - 500)
     .draw(Arg::top = ColorF(0.0, 0.0), Arg::bottom = ColorF(0.0, 0.5));
     
-    const int32 highScore = getData().highScore;
-    FontAsset(U"Score")(U"High score: {}"_fmt(highScore)).drawAt(Vec2(620, 550));
+//    const int32 highScore = getData().highScore;
+//    FontAsset(U"Score")(U"High score: {}"_fmt(highScore)).drawAt(Vec2(620, 550));
 }
