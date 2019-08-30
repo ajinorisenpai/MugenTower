@@ -1,10 +1,3 @@
-//
-//  Player.hpp
-//  empty
-//
-//  Created by 坂井創一 on 2019/08/10.
-//
-
 #ifndef Player_hpp
 #define Player_hpp
 
@@ -13,7 +6,6 @@
 #include <Siv3D.hpp>
 #include "Actor.hpp"
 #include "Burn.hpp"
-
 class Player:public Actor{
 private:
     Effect effect;
@@ -64,10 +56,12 @@ private:
     Audio landing_se;
     Audio hook_se;
     Audio gameover_se;
+    
+    s3d::Vec2 pos = Vec2(100,100);
 public:
     void GameOver();
     void GameClear();
-    s3d::Vec2 pos = Vec2(100,100);
+    Vec2 GetPos() const {return pos;}
     Player(Game* m_game,Vec2 pos):Actor(m_game),pos(pos){
         texture_walk = Texture(U"Image/Unitychan/Unitychan_Walk.png");
         texture_idle = Texture(U"Image/Unitychan/Unitychan_Idle.png");

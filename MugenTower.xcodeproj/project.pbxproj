@@ -33,7 +33,6 @@
 		2C6906D42298131500A427D0 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906CE2298131500A427D0 /* libopencv_imgproc.a */; };
 		2C6906D62298131800A427D0 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6906D52298131800A427D0 /* libz.a */; };
 		2C6906D82298140F00A427D0 /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 2C6906D72298140F00A427D0 /* engine */; };
-		BA4BC55223150E640089D66F /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC55023150E640089D66F /* Animation.cpp */; };
 		BA4BC5582315546B0089D66F /* Stage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC5562315546B0089D66F /* Stage.cpp */; };
 		BA4BC56223168C220089D66F /* Hook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC56023168C220089D66F /* Hook.cpp */; };
 		BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA63C42222FEF44A004B7335 /* Actor.cpp */; };
@@ -74,8 +73,6 @@
 		2C6906CE2298131500A427D0 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../lib/macOS/opencv/libopencv_imgproc.a; sourceTree = "<group>"; };
 		2C6906D52298131800A427D0 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
 		2C6906D72298140F00A427D0 /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = App/engine; sourceTree = "<group>"; };
-		BA4BC55023150E640089D66F /* Animation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
-		BA4BC55123150E640089D66F /* Animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Animation.hpp; sourceTree = "<group>"; };
 		BA4BC55523153A810089D66F /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		BA4BC5562315546B0089D66F /* Stage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stage.cpp; sourceTree = "<group>"; };
 		BA4BC5572315546B0089D66F /* Stage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stage.hpp; sourceTree = "<group>"; };
@@ -166,8 +163,6 @@
 				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
 				BA4BC5562315546B0089D66F /* Stage.cpp */,
 				BA4BC5572315546B0089D66F /* Stage.hpp */,
-				BA4BC55023150E640089D66F /* Animation.cpp */,
-				BA4BC55123150E640089D66F /* Animation.hpp */,
 				BA63C42222FEF44A004B7335 /* Actor.cpp */,
 				BA4BC56023168C220089D66F /* Hook.cpp */,
 				BA4BC56123168C220089D66F /* Hook.hpp */,
@@ -292,7 +287,6 @@
 				2C17789A1CE0AA7C00BB8AD0 /* Main.cpp in Sources */,
 				ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */,
 				BA4BC56223168C220089D66F /* Hook.cpp in Sources */,
-				BA4BC55223150E640089D66F /* Animation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

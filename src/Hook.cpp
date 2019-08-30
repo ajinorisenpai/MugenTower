@@ -1,10 +1,3 @@
-//
-//  Hook.cpp
-//  empty
-//
-//  Created by 坂井創一 on 2019/08/28.
-//
-
 #include "Hook.hpp"
 #include "Game.hpp"
 #include "Burn.hpp"
@@ -32,7 +25,7 @@ void Hook::update(){
             }
             
         }
-        s_pos = GetGame()->GetPlayer().pos;
+        s_pos = GetGame()->GetPlayer().GetPos();
         s_pos.x +=32.0;
         s_pos.y += 20.0;
         length-=Scene::DeltaTime()*50.0;

@@ -1,10 +1,3 @@
-//
-//  Actor.hpp
-//  empty
-//
-//  Created by 坂井創一 on 2019/08/10.
-//
-
 #ifndef Actor_hpp
 #define Actor_hpp
 

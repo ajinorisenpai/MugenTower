@@ -1,10 +1,3 @@
-//
-//  Effect.hpp
-//  empty
-//
-//  Created by 坂井創一 on 2019/08/26.
-//
-
 #ifndef Burn_hpp
 #define Burn_hpp
 

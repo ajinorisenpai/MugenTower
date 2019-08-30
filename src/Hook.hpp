@@ -1,10 +1,3 @@
-//
-//  Hook.hpp
-//  empty
-//
-//  Created by 坂井創一 on 2019/08/28.
-//
-
 #ifndef Hook_hpp
 #define Hook_hpp
 

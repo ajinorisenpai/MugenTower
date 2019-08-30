@@ -1,10 +1,3 @@
-//
-//  Bullet.cpp
-//  empty
-//
-//  Created by 坂井創一 on 2019/08/10.
-//
-
 #include "Bullet.hpp"
 #include "Game.hpp"
 #include <Siv3D.hpp>
@@ -16,7 +9,7 @@ void Bullet::update(int32& HP){
     pos.moveBy(m_ballVelocity * Scene::DeltaTime());
     m_ball = Circle(pos.x,pos.y,4);
     
-    if(abs(pos.x - GetGame()->GetPlayer().pos.x) >1000){
+    if(abs(pos.x - GetGame()->GetPlayer().GetPos().x) >1000){
         
         mState = State::Dead;
     }
