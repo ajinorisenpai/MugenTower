@@ -1,12 +1,10 @@
-App/empty.app
-App/empty.app.dSYM
+App/MugenTower.app/
 engine
 example
 nlp
 Info.plist
 icon.icns
 .DS_Store
-
 
 # Xcode
 #
