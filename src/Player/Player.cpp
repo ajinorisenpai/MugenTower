@@ -185,7 +185,7 @@ void Player::update(){
     HitCheck();
     frame+=1;
     if(p_st==Clear){
-        if(frame > 110) GetGame()->GameOver();
+        if(frame > 110) GetGame()->GameClear();
         return;
     }
     if(p_st == Dead){

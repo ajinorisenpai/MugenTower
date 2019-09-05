@@ -63,18 +63,23 @@ public:
     void GameOver();
     void GameClear();
     Vec2 GetPos() const {return pos;}
+    void init(Vec2 t_pos){
+        pos = t_pos;
+        p_st = State::Idle;
+        velocity = Vec2(0.0,0.0);
+    }
     Player(Game* m_game,Vec2 pos):Actor(m_game),pos(pos){
-        texture_walk = Texture(U"Image/Unitychan/Unitychan_Walk.png");
-        texture_idle = Texture(U"Image/Unitychan/Unitychan_Idle.png");
-        texture_turn = Texture(U"Image/Unitychan/Unitychan_Turn.png");
-        texture_run = Texture(U"Image/Unitychan/Unitychan_Run.png");
-        texture_jump = Texture(U"Image/Unitychan/Unitychan_Jump.png");
-        texture_positive = Texture(U"Image/Unitychan/Unitychan_Positive.png");
-        jump_se = Audio(U"Sound/jump.wav");
-        landing_se = Audio(U"Sound/landing.wav");
-        hook_se = Audio(U"Sound/hook.wav");
+        texture_walk = Texture(Resource(U"Image/Unitychan/Unitychan_Walk.png"));
+        texture_idle = Texture(Resource(U"Image/Unitychan/Unitychan_Idle.png"));
+        texture_turn = Texture(Resource(U"Image/Unitychan/Unitychan_Turn.png"));
+        texture_run = Texture(Resource(U"Image/Unitychan/Unitychan_Run.png"));
+        texture_jump = Texture(Resource(U"Image/Unitychan/Unitychan_Jump.png"));
+        texture_positive = Texture(Resource(U"Image/Unitychan/Unitychan_Positive.png"));
+        jump_se = Audio(Resource(U"Sound/jump.wav"));
+        landing_se = Audio(Resource(U"Sound/landing.wav"));
+        hook_se = Audio(Resource(U"Sound/hook.wav"));
         
-        gameover_se = Audio(U"Sound/gameover.wav");
+        gameover_se = Audio(Resource(U"Sound/gameover.wav"));
     }
     bool collision(Circle& c){
         return HitBox.intersects(c);

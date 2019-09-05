@@ -15,22 +15,22 @@ void Title::update(){
     
     if (m_tutorialButton.leftClicked())
     {
-        getData().StageFile = U"Levels/tutorial.csv";
+        getData().StageFile = Resource(U"Levels/tutorial.csv");
         changeScene(State::Game);
     }
     if (m_stage1Button.leftClicked())
     {
-        getData().StageFile = U"Levels/stage1.csv";
+        getData().StageFile = Resource(U"Levels/stage1.csv");
         changeScene(State::Game);
     }
     if (m_stage2Button.leftClicked())
     {
-        getData().StageFile = U"Levels/stage2.csv";
+        getData().StageFile = Resource(U"Levels/stage2.csv");
         changeScene(State::Game);
     }
     if (m_stage3Button.leftClicked())
     {
-        getData().StageFile = U"Levels/stage3.csv";
+        getData().StageFile = Resource(U"Levels/stage3.csv");
         changeScene(State::Game);
     }
     if (DebugButton.leftClicked())

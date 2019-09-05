@@ -28,7 +28,7 @@ public:
             }
             yy++;
         }
-        if(path==U"Levels/tutorial.csv"){
+        if(path==Resource(U"Levels/tutorial.csv")){
             tutorial_flag = true;
         }
         

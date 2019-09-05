@@ -35,13 +35,17 @@ public:
     Game(const InitData& init)
     : IScene(init)
     {
-        HouseBGM = Audio(U"Sound/HouseBGM.mp3");
+        HouseBGM = Audio(Resource(U"Sound/HouseBGM.mp3"));
         HouseBGM.setLoop(true);
         HouseBGM.play();
     }
     
     void update() override;
 
+    void init(){
+        m_player.init(game_stage.GetStartPos());
+    }
+    
     void make_bullet(Vec2 pos,Vec2 dir){
         playerBullets << Bullet(this,pos,dir);
     }
@@ -54,6 +58,11 @@ public:
         m_hook.init(pos,dir);
     }
     void GameOver(){
+        init();
+//        HouseBGM.stop();
+//        changeScene(State::Title);
+    }
+    void GameClear(){
         HouseBGM.stop();
         changeScene(State::Title);
     }
