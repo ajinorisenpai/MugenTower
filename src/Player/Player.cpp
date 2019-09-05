@@ -63,7 +63,7 @@ void Player::handle_input(){
         case Walk:
             if(KeyLeft.pressed()){
                 if(facing_left){
-                    if(velocity.x<-10){
+                    if(velocity.x<-5){
                         p_st = State::Run;
                         velocity.x = std::max<double>(-Walkspeed_limit,velocity.x-walkspeed*d_time);
                     }else{
@@ -76,7 +76,7 @@ void Player::handle_input(){
             }else
                 if(KeyRight.pressed()){
                     if(!facing_left){
-                        if(velocity.x>10){
+                        if(velocity.x>5){
                             p_st = State::Run;
                             velocity.x = std::min<double>(Walkspeed_limit,velocity.x+walkspeed*d_time);
                         }else{
@@ -94,7 +94,7 @@ void Player::handle_input(){
         case Run:
             if(KeyLeft.pressed()){
                 if(facing_left){
-                    velocity.x = std::max<double>(-Runspeed_limit,velocity.x-10*d_time);
+                    velocity.x = std::max<double>(-Runspeed_limit,velocity.x-5*d_time);
 
                 }else{
                     p_st = State::Idle;
@@ -103,7 +103,7 @@ void Player::handle_input(){
             }else if(KeyRight.pressed()){
                 if(!facing_left){
 
-                    velocity.x = std::min<double>(Runspeed_limit,velocity.x+10*d_time);
+                    velocity.x = std::min<double>(Runspeed_limit,velocity.x+5*d_time);
                     
                 }else{
                     p_st = State::Idle;
