@@ -1,4 +1,9 @@
-App
+App/empty.app
+App/empty.app.dSYM
+engine
+example
+nlp
+src
 Info.plist
 icon.icns
 .DS_Store
