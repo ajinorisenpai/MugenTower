@@ -2,6 +2,10 @@
 #include "Game.hpp"
 #include "Burn.hpp"
 void Hook::update(){
+    if(length<0.0){
+        mState = State::Dead;
+        once_hooked=false;
+    }
     if(mState!= State::Dead){
         if(hooked){
             if(!once_hooked){
@@ -29,10 +33,6 @@ void Hook::update(){
         s_pos.x +=32.0;
         s_pos.y += 20.0;
         length-=Scene::DeltaTime()*50.0;
-        if(length<0.0){
-            mState = State::Dead;
-            once_hooked=false;
-        }
     }
 }
 void Hook::draw() const {

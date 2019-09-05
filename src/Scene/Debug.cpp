@@ -11,6 +11,6 @@
 void Debug::update(){
 }
 void Debug::draw() const{
-    Rect(10,10,10,10).draw();
+    Rect(10,10,100,100).draw();
     
 }

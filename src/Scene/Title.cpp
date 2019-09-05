@@ -61,6 +61,7 @@ void Title::draw() const{
     FontAsset(U"Menu")(U"ステージ 1").drawAt(m_stage1Button.center(), ColorF(0.25));
     FontAsset(U"Menu")(U"ステージ 2").drawAt(m_stage2Button.center(), ColorF(0.25));
     FontAsset(U"Menu")(U"ステージ 3").drawAt(m_stage3Button.center(), ColorF(0.25));
+    FontAsset(U"Menu")(U"コンフィグ").drawAt(DebugButton.center(), ColorF(0.25));
     
     FontAsset(U"Menu")(U"おわる").drawAt(m_exitButton.center(), ColorF(0.25));
     

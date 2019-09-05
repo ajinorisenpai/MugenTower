@@ -17,7 +17,9 @@ void Main()
     .add<Debug>(State::Debug)
     .setFadeColor(ColorF(0.0))
     ;
-    
+    Window::Resize(1280,1024);
+    // ウィンドウの枠を非表示にする
+    Window::SetStyle(WindowStyle::Frameless);
     // 現在のモニタで使用可能なフルスクリーン解像度を取得
 //    const Array<Size> resolutions = Graphics::GetFullscreenResolutions();
 //    
