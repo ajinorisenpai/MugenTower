@@ -63,7 +63,4 @@ void Title::draw() const{
     
     Rect(0, 500, Scene::Width(), Scene::Height() - 500)
     .draw(Arg::top = ColorF(0.0, 0.0), Arg::bottom = ColorF(0.0, 0.5));
-    
-//    const int32 highScore = getData().highScore;
-//    FontAsset(U"Score")(U"High score: {}"_fmt(highScore)).drawAt(Vec2(620, 550));
 }

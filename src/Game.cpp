@@ -36,6 +36,8 @@ void Game::draw() const{
         }
         m_hook.draw();
         camera.draw(Palette::Orange);
-        
+    }
+    if(Config_Mode){
+        Rect(10,10,10,10).draw();
     }
 }

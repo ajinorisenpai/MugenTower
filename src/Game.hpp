@@ -15,7 +15,7 @@
 class Game : public SceneManager<State, GameData>::Scene
 {
 private:
-    Array<Enemy> m_blocks;
+    Array<Enemy> m_enemy;
     Array<Bullet> playerBullets;
     float camera_scale = 1.0;
     Stage game_stage = Stage(getData().StageFile);
@@ -24,13 +24,13 @@ private:
     Hook m_hook = Hook(this,Vec2(0.0,0.0),Vec2(0.0,0.0));
     Camera2D camera = Camera2D(1.0,Camera2DParameters::MouseOnly());
     Audio HouseBGM;
+    bool Config_Mode = false;
 public:
     
     Player& GetPlayer() {return m_player;}
-    Array<Enemy>& GetEnemy(){return m_blocks;}
+    Array<Enemy>& GetEnemy(){return m_enemy;}
     Array<Bullet>& GetPlayerBullet(){return playerBullets;}
     Hook& GetHook(){return m_hook;}
-    // スコア
     int32 m_score = 0;
     Game(const InitData& init)
     : IScene(init)

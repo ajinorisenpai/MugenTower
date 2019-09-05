@@ -65,9 +65,9 @@ void Player::handle_input(){
                 if(facing_left){
                     if(KeyZ.pressed()){
                         p_st = State::Run;
-                        velocity.x = std::max<double>(-walkspeed_limit,velocity.x-walkspeed*d_time);
+                        velocity.x = std::max<double>(-Walkspeed_limit,velocity.x-walkspeed*d_time);
                     }else{
-                        velocity.x = std::max<double>(-walkspeed_limit,velocity.x-walkspeed*d_time);
+                        velocity.x = std::max<double>(-Walkspeed_limit,velocity.x-walkspeed*d_time);
                     }
                 }else{
                     p_st = State::Idle;
@@ -78,10 +78,10 @@ void Player::handle_input(){
                     if(!facing_left){
                         if(KeyZ.pressed()){
                             p_st = State::Run;
-                            velocity.x = std::min<double>(walkspeed_limit,velocity.x+walkspeed*d_time);
+                            velocity.x = std::min<double>(Walkspeed_limit,velocity.x+walkspeed*d_time);
                         }else{
                             velocity.x =
-                            std::min<double>(walkspeed_limit,velocity.x+walkspeed*d_time);
+                            std::min<double>(Walkspeed_limit,velocity.x+walkspeed*d_time);
                         }
                     }else{
                         p_st = State::Idle;
@@ -119,19 +119,21 @@ void Player::handle_input(){
             }
             break;
         case Jump:
-            if(velocity.x > 0) velocity.x -=3*d_time;
-            if(velocity.x < 0) velocity.x +=3*d_time;
+            if(velocity.x > 0) velocity.x -=10*d_time;
+            if(velocity.x < 0) velocity.x +=10*d_time;
             velocity.y+=20*d_time;
             if(KeyLeft.pressed()){
                 if(facing_left){
-                    velocity.x-= 4 * d_time;
+                    if(velocity.x > -Walkspeed_limit)
+                        velocity.x -= 30.0*d_time;
                     
                 }else{
                                 facing_left = !facing_left;
                 }
             }else if(KeyRight.pressed()){
                 if(!facing_left){
-                     velocity.x += 4 * d_time;
+                    if(velocity.x < Walkspeed_limit)
+                        velocity.x += 30.0*d_time;
                     
                 }else{
                         facing_left = !facing_left;
@@ -223,6 +225,7 @@ void Player::HitCheck(){
     };
     pos.y+= hit_u;
     if(velocity.y > 0){
+        //下との衝突
         if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
             checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
             checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 4){
@@ -234,6 +237,7 @@ void Player::HitCheck(){
            checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 1){
             landing_se.playOneShot(1.0);
             velocity.y = 0;
+            velocity.x /= 2;
             if(!((checkMapData(Vec2(pos.x+hit_r,pos.y-64+velocity.y)) |
                checkMapData(Vec2(pos.x+hit_mid,pos.y-64+velocity.y)) |
                checkMapData(Vec2(pos.x+hit_l,pos.y-64+velocity.y))) & 1))
@@ -297,7 +301,7 @@ void Player::HitCheck(){
         if((checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d)) |
            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) |
            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))) & 1){
-            if(velocity.x>5.0) landing_se.playOneShot(1.0);
+            if(velocity.x>11.0) landing_se.playOneShot(1.0);
             
             velocity.x = 0;
             if((checkMapData(Vec2(pos.x,pos.y+hit_d)) |
@@ -324,7 +328,7 @@ void Player::HitCheck(){
         if((checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_d))   |
            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_mid)) |
            checkMapData(Vec2(pos.x+velocity.x,pos.y+hit_u))) & 1){
-            if(velocity.x<-5.0) landing_se.playOneShot(1.0);
+            if(velocity.x<-11.0) landing_se.playOneShot(1.0);
             
             velocity.x = 0;
             if((checkMapData(Vec2(pos.x,pos.y+hit_d)) |

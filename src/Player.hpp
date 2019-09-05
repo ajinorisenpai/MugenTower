@@ -9,9 +9,9 @@
 class Player:public Actor{
 private:
     Effect effect;
-    const int jump_power = 14;
+    const int jump_power = 12;
     const int Runspeed_limit = 10;
-    const int walkspeed_limit = 6;
+    const int Walkspeed_limit = 6;
     const int walkspeed = 20;
     s3d::Vec2 size = Vec2(72,72);
     Vec2 HitBox_size = Vec2(20,40);

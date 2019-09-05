@@ -3,7 +3,6 @@
 #include <Siv3D.hpp>
 #include "Burn.hpp"
 void Bullet::update(int32& HP){
-    // ボールを移動
     
     
     pos.moveBy(m_ballVelocity * Scene::DeltaTime());
@@ -15,20 +14,14 @@ void Bullet::update(int32& HP){
     }
     
     for(auto it = GetGame()->GetEnemy().begin();it!=GetGame()->GetEnemy().end();++it){
-        // ボールとブロックが交差していたら
         if (it->collision(m_ball))
         {
             effect.add<Burn>(pos);
-            // ボールの向きを反転する
             (it->rect.bottom().intersects(m_ball) || it->rect.top().intersects(m_ball) ? m_ballVelocity.y : m_ballVelocity.x) *= -1;
             
-            // スコアを加算
-            GetGame()->m_score++;
-            
-            // ブロックを配列から削除
+
             GetGame()->GetEnemy().erase(it);
             
-            // これ以上チェックしない
             break;
         }
     }

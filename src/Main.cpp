@@ -30,7 +30,7 @@ void Main()
 //    {
 //        throw Error(U"フルスクリーンモードへの切り替えに失敗しました。");
 //    }
-    
+//    
     while (System::Update())
     {
         if (!manager.update())
