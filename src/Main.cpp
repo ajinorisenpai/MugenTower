@@ -1,7 +1,7 @@
 #include <Siv3D.hpp>
 #include "Game.hpp"
 #include "Title.hpp"
-
+#include "Debug.hpp"
 void Main()
 {
     FontAsset::Register(U"Title", 80, U"example/font/AnnyantRoman/AnnyantRoman.ttf");
@@ -14,6 +14,7 @@ void Main()
     manager
     .add<Title>(State::Title)
     .add<Game>(State::Game)
+    .add<Debug>(State::Debug)
     .setFadeColor(ColorF(0.0))
     ;
     

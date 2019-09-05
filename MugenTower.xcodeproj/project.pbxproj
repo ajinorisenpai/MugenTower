@@ -37,6 +37,7 @@
 		BA4BC56223168C220089D66F /* Hook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC56023168C220089D66F /* Hook.cpp */; };
 		BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA63C42222FEF44A004B7335 /* Actor.cpp */; };
 		BA8204542313789A001693FE /* Burn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA8204522313789A001693FE /* Burn.cpp */; };
+		ED7A3C652320BF7A00E95914 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7A3C632320BF7A00E95914 /* Debug.cpp */; };
 		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
 		ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07D22FE9D8200FCDB83 /* Title.cpp */; };
 		ED7AF08422FEAE3000FCDB83 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF08222FEAE3000FCDB83 /* Player.cpp */; };
@@ -45,7 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C1778841CE0A9EA00BB8AD0 /* empty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = empty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C1778841CE0A9EA00BB8AD0 /* MugenTower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MugenTower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778921CE0A9EA00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C1778991CE0AA7C00BB8AD0 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		2C1778A21CE0B65500BB8AD0 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		2C6906CE2298131500A427D0 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = ../../lib/macOS/opencv/libopencv_imgproc.a; sourceTree = "<group>"; };
 		2C6906D52298131800A427D0 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
 		2C6906D72298140F00A427D0 /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = App/engine; sourceTree = "<group>"; };
-		BA4BC55523153A810089D66F /* Todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Todo.md; sourceTree = "<group>"; };
 		BA4BC5562315546B0089D66F /* Stage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stage.cpp; sourceTree = "<group>"; };
 		BA4BC5572315546B0089D66F /* Stage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stage.hpp; sourceTree = "<group>"; };
 		BA4BC55923162B760089D66F /* App */ = {isa = PBXFileReference; lastKnownFileType = folder; path = App; sourceTree = "<group>"; };
@@ -83,6 +83,8 @@
 		BA63C42322FEF44A004B7335 /* Actor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actor.hpp; sourceTree = "<group>"; };
 		BA8204522313789A001693FE /* Burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Burn.cpp; sourceTree = "<group>"; };
 		BA8204532313789A001693FE /* Burn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Burn.hpp; sourceTree = "<group>"; };
+		ED7A3C632320BF7A00E95914 /* Debug.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		ED7A3C642320BF7A00E95914 /* Debug.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
 		ED7AF07A22FE9D6600FCDB83 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		ED7AF07B22FE9D6600FCDB83 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		ED7AF07D22FE9D8200FCDB83 /* Title.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Title.cpp; sourceTree = "<group>"; };
@@ -136,7 +138,6 @@
 				BA4BC55923162B760089D66F /* App */,
 				2C6906D72298140F00A427D0 /* engine */,
 				2C1778921CE0A9EA00BB8AD0 /* Info.plist */,
-				BA4BC55523153A810089D66F /* Todo.md */,
 				2C1778A21CE0B65500BB8AD0 /* icon.icns */,
 				2C1778981CE0AA7C00BB8AD0 /* src */,
 				2C1778851CE0A9EA00BB8AD0 /* Products */,
@@ -147,7 +148,7 @@
 		2C1778851CE0A9EA00BB8AD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C1778841CE0A9EA00BB8AD0 /* empty.app */,
+				2C1778841CE0A9EA00BB8AD0 /* MugenTower.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,25 +157,14 @@
 			isa = PBXGroup;
 			children = (
 				2C1778991CE0AA7C00BB8AD0 /* Main.cpp */,
-				ED7AF07A22FE9D6600FCDB83 /* Game.cpp */,
-				ED7AF07B22FE9D6600FCDB83 /* Game.hpp */,
 				ED7AF08022FEA5B100FCDB83 /* GameInfo.h */,
-				ED7AF08222FEAE3000FCDB83 /* Player.cpp */,
-				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
 				BA4BC5562315546B0089D66F /* Stage.cpp */,
 				BA4BC5572315546B0089D66F /* Stage.hpp */,
-				BA63C42222FEF44A004B7335 /* Actor.cpp */,
-				BA4BC56023168C220089D66F /* Hook.cpp */,
-				BA4BC56123168C220089D66F /* Hook.hpp */,
-				BA63C42322FEF44A004B7335 /* Actor.hpp */,
-				ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */,
-				BA8204522313789A001693FE /* Burn.cpp */,
-				BA8204532313789A001693FE /* Burn.hpp */,
-				ED7AF08922FEBF5900FCDB83 /* Enemy.hpp */,
-				ED7AF08522FEBB6F00FCDB83 /* Bullet.cpp */,
-				ED7AF08622FEBB6F00FCDB83 /* Bullet.hpp */,
-				ED7AF07D22FE9D8200FCDB83 /* Title.cpp */,
-				ED7AF07E22FE9D8200FCDB83 /* Title.hpp */,
+				ED7A3C6A2320C24900E95914 /* Enemy */,
+				ED7A3C692320C20100E95914 /* Core */,
+				ED7A3C682320C1F000E95914 /* Effect */,
+				ED7A3C672320C1D100E95914 /* Player */,
+				ED7A3C662320C18300E95914 /* Scene */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -209,12 +199,65 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED7A3C662320C18300E95914 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				ED7AF07A22FE9D6600FCDB83 /* Game.cpp */,
+				ED7AF07B22FE9D6600FCDB83 /* Game.hpp */,
+				ED7AF07D22FE9D8200FCDB83 /* Title.cpp */,
+				ED7AF07E22FE9D8200FCDB83 /* Title.hpp */,
+				ED7A3C632320BF7A00E95914 /* Debug.cpp */,
+				ED7A3C642320BF7A00E95914 /* Debug.hpp */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		ED7A3C672320C1D100E95914 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				ED7AF08522FEBB6F00FCDB83 /* Bullet.cpp */,
+				ED7AF08622FEBB6F00FCDB83 /* Bullet.hpp */,
+				ED7AF08222FEAE3000FCDB83 /* Player.cpp */,
+				ED7AF08322FEAE3000FCDB83 /* Player.hpp */,
+				BA4BC56023168C220089D66F /* Hook.cpp */,
+				BA4BC56123168C220089D66F /* Hook.hpp */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		ED7A3C682320C1F000E95914 /* Effect */ = {
+			isa = PBXGroup;
+			children = (
+				BA8204522313789A001693FE /* Burn.cpp */,
+				BA8204532313789A001693FE /* Burn.hpp */,
+			);
+			path = Effect;
+			sourceTree = "<group>";
+		};
+		ED7A3C692320C20100E95914 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BA63C42222FEF44A004B7335 /* Actor.cpp */,
+				BA63C42322FEF44A004B7335 /* Actor.hpp */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ED7A3C6A2320C24900E95914 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				ED7AF08822FEBF5900FCDB83 /* Enemy.cpp */,
+				ED7AF08922FEBF5900FCDB83 /* Enemy.hpp */,
+			);
+			path = Enemy;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C1778831CE0A9EA00BB8AD0 /* empty */ = {
+		2C1778831CE0A9EA00BB8AD0 /* MugenTower */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "empty" */;
+			buildConfigurationList = 2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "MugenTower" */;
 			buildPhases = (
 				2C1778801CE0A9EA00BB8AD0 /* Sources */,
 				2C1778811CE0A9EA00BB8AD0 /* Frameworks */,
@@ -224,9 +267,9 @@
 			);
 			dependencies = (
 			);
-			name = empty;
+			name = MugenTower;
 			productName = empty;
-			productReference = 2C1778841CE0A9EA00BB8AD0 /* empty.app */;
+			productReference = 2C1778841CE0A9EA00BB8AD0 /* MugenTower.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -255,7 +298,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C1778831CE0A9EA00BB8AD0 /* empty */,
+				2C1778831CE0A9EA00BB8AD0 /* MugenTower */,
 			);
 		};
 /* End PBXProject section */
@@ -285,6 +328,7 @@
 				BA8204542313789A001693FE /* Burn.cpp in Sources */,
 				ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */,
 				2C17789A1CE0AA7C00BB8AD0 /* Main.cpp in Sources */,
+				ED7A3C652320BF7A00E95914 /* Debug.cpp in Sources */,
 				ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */,
 				BA4BC56223168C220089D66F /* Hook.cpp in Sources */,
 			);
@@ -520,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "empty" */ = {
+		2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "MugenTower" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C1778941CE0A9EA00BB8AD0 /* Debug */,
