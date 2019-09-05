@@ -1,6 +1,6 @@
 MugenTower
 =========
-このゲームはMac版OpenSiv3d0.4.0とXcode10.3のC++17によって制作されました．
+このゲームはMac版OpenSiv3d0.4.0とC++17によって制作されました．
 
 ## 起動方法
 empty.appを実行してください．
@@ -14,7 +14,7 @@ empty.appを実行してください．
 * Cキー     : 周りを見る
 
 ## ソースファイル
-* srcフォルダに全て入っています
+* srcフォルダに入っています
 * https://github.com/ajinorisenpai/MugenTower で見ることもできます．
 
 ## ステージエディタ
