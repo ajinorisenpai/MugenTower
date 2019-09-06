@@ -1,4 +1,4 @@
-#ifndef Actor_hpp
+﻿#ifndef Actor_hpp
 #define Actor_hpp
 
 #include <stdio.h>

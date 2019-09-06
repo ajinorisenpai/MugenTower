@@ -1,4 +1,4 @@
-#ifndef Enemy_hpp
+﻿#ifndef Enemy_hpp
 #define Enemy_hpp
 
 #include <Siv3D.hpp>

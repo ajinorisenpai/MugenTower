@@ -27,3 +27,11 @@ empty.appを実行してください．
      * 3ビット目：即死効果の有無
      * 4ビット目：ステージクリアフラグ
      * 5ビット目：ステージスタートフラグ
+
+## Visual Studioデコンパイルする時
+`nkf`コマンドでソースコードにBOMつけてあげる
+```bash
+% find . -name "*.hpp" -exec nkf --overwrite --oc=UTF-8-BOM {} \;
+% find . -name "*.h" -exec nkf --overwrite --oc=UTF-8-BOM {} \;
+% find . -name "*.cpp" -exec nkf --overwrite --oc=UTF-8-BOM {} \;
+```

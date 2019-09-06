@@ -1,4 +1,4 @@
-#ifndef GameInfo_h
+﻿#ifndef GameInfo_h
 #define GameInfo_h
 #include <Siv3D.hpp>
 

@@ -1,4 +1,4 @@
-//
+﻿//
 //  SceneChange.hpp
 //  empty
 //

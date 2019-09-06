@@ -9,7 +9,6 @@ void Hook::update(){
     if(mState!= State::Dead){
         if(hooked){
             if(!once_hooked){
-                length += HOOK_TIME;
                 once_hooked=true;
             }
             GetGame()->GetPlayer().hooked(pos);
@@ -22,6 +21,8 @@ void Hook::update(){
                 effect.add<Burn>(pos);
                 length = 0.0;
             }else if(checkMapData(pos) & 1) {
+                
+                length += HOOK_TIME;
                 effect.add<Burn>(pos);
                 hooked= true;
             }else{

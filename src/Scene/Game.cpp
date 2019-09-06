@@ -1,4 +1,4 @@
-#include "Game.hpp"
+﻿#include "Game.hpp"
 #include "Burn.hpp"
 
 void Game::update(){

@@ -1,4 +1,4 @@
-#ifndef Burn_hpp
+﻿#ifndef Burn_hpp
 #define Burn_hpp
 
 #include <Siv3D.hpp>

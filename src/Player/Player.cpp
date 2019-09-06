@@ -1,4 +1,4 @@
-#include "Player.hpp"
+﻿#include "Player.hpp"
 #include "Game.hpp"
 void Player::shot_bullet(){
     if(facing_left) GetGame()->make_bullet(Vec2(pos.x+30.0,pos.y+32.0),Vec2(-480.0,Random<double>(-100.0,100.0)));

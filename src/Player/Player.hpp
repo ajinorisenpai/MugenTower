@@ -1,4 +1,4 @@
-#ifndef Player_hpp
+﻿#ifndef Player_hpp
 #define Player_hpp
 
 #include <stdio.h>

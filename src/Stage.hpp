@@ -1,4 +1,4 @@
-#ifndef Stage_hpp
+﻿#ifndef Stage_hpp
 #define Stage_hpp
 
 #include <stdio.h>

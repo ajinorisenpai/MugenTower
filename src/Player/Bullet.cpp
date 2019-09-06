@@ -1,4 +1,4 @@
-#include "Bullet.hpp"
+﻿#include "Bullet.hpp"
 #include "Game.hpp"
 #include <Siv3D.hpp>
 #include "Burn.hpp"
