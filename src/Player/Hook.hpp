@@ -16,7 +16,6 @@ private:
     static constexpr double speed = 480.0;
     Vec2 Velocity;
     bool hooked = false;
-    bool once_hooked = false;
 public:
 //    Circle m_hook = ;
     
@@ -32,7 +31,6 @@ public:
         length = HOOK_LENGTH;
         mState = State::Active;
         hooked = false;
-        once_hooked = false;
     }
     
     void update();

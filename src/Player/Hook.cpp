@@ -4,13 +4,9 @@
 void Hook::update(){
     if(length<0.0){
         mState = State::Dead;
-        once_hooked=false;
     }
     if(mState!= State::Dead){
         if(hooked){
-            if(!once_hooked){
-                once_hooked=true;
-            }
             GetGame()->GetPlayer().hooked(pos);
         }else{
             auto checkMapData = [this](const Vec2 po)->int{
