@@ -182,7 +182,8 @@ bool Player::hooked(Vec2 to_pos){
     return false;
 }
 void Player::update(){
-    
+    TimeProfiler tp;
+    tp.begin(U"Hitcheck");
     HitCheck();
     frame+=1;
     if(p_st==Clear){
@@ -196,11 +197,12 @@ void Player::update(){
         return;
     }
     pos += velocity;
+    tp.end();
     
-    
+    tp.begin(U"Handleinput");
     handle_input();
     HitBox = Rect(pos.x,pos.y,size.x,size.y);
-        
+    tp.end();
     
 }
 void Player::GameOver(){

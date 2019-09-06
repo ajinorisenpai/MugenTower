@@ -2,6 +2,7 @@
 #include "Burn.hpp"
 
 void Game::camera_update(){
+    
     if(KeyC.pressed()) {
         if(camera_scale >0.4) camera_scale *= 0.99;
     }else if(camera_scale < 1) camera_scale += 0.02;
@@ -27,11 +28,12 @@ void Game::camera_update(){
 }
 
 void Game::update(){
-    
+    TimeProfiler tp;
+    tp.begin(U"MainUpdate");
     camera_update();
     
-    m_player.update();
     
+    m_player.update();
     for (auto& bullet : playerBullets)
     {
         bullet.update(HP);
@@ -43,7 +45,7 @@ void Game::update(){
     m_hook.update();
     
     playerBullets.remove_if([](const auto& actor){return actor.isDead();});
-    
+    tp.end();
 }
 
 void Game::draw() const{

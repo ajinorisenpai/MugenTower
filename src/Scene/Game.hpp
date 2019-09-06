@@ -14,6 +14,7 @@
 class Game : public SceneManager<State, GameData>::Scene
 {
 protected:
+    
 //オーディオ
     Audio HouseBGM;
 //カメラ設定
@@ -34,6 +35,7 @@ protected:
     Array<Bullet> playerBullets;
     Array<Enemy> m_enemy;
 public:
+    
     Game(const InitData& init)
     : IScene(init)
     {
