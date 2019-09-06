@@ -5,6 +5,7 @@ nlp
 Info.plist
 icon.icns
 .DS_Store
+winsrc
 
 # Xcode
 #

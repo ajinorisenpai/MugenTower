@@ -29,9 +29,4 @@ empty.appを実行してください．
      * 5ビット目：ステージスタートフラグ
 
 ## Visual Studioデコンパイルする時
-`nkf`コマンドでソースコードにBOMつけてあげる
-```bash
-% find . -name "*.hpp" -exec nkf --overwrite --oc=UTF-8-BOM {} \;
-% find . -name "*.h" -exec nkf --overwrite --oc=UTF-8-BOM {} \;
-% find . -name "*.cpp" -exec nkf --overwrite --oc=UTF-8-BOM {} \;
-```
+`convert_vs.sh`を実行して出てきたソースファイルを使ってください
