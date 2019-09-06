@@ -13,14 +13,15 @@ private:
     const int VIS_RANGE = 20;
 public:
     Stage(String path){
-        map_data = vector<vector<int>>(100,vector<int>(100,0));
-        CSVData csv(path);
+        map_data = vector<vector<int>>(110,vector<int>(110,0));
+        CSVData csv(Resource(path));
         Array<Array<String>> in_file = csv.getData();
         //あとで直す
         int yy = 0;
         for(auto row : in_file){
             int xx = 0;
             for(auto column: row){
+                if(xx>=100 || yy >=100) break;
                 map_data[xx][yy] = Parse<int32>(column);
                 if(map_data[xx][yy] == 16){
                     StartPos = Vec2(xx*64+32,yy*64+32);
@@ -52,15 +53,15 @@ public:
                 if(y<0||x<0||y>=100||x>=100) continue;
                      if(map_data[x][y] == 0b0001) RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(30, 200, 30));
                 else if(map_data[x][y] == 0b0010)
-                    RoundRect(x*64,y*64,64,64,10).draw(Color(50,50,50)).drawFrame(3, 3, Palette::Black);
+                    RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3, Palette::Black);
                 else if(map_data[x][y] == 0b0011)
                      RoundRect(x*64,y*64,64,64,10).draw(Color(100,100,100));
                 else if(map_data[x][y] == 0b0100)
-                    RoundRect(x*64,y*64,64,64,10).draw(Color(180, 0, 100));
+                    RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(180, 0, 100));
                 else if(map_data[x][y] == 0b0101)
                     RoundRect(x*64,y*64,64,64,10).draw(Color(225, 190, 190));
                 else if(map_data[x][y] == 0b0110)
-                    RoundRect(x*64,y*64,64,64,10).draw(Color(200, 40,40));
+                    RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(200, 40,40));
                 else if(map_data[x][y] == 0b0111)
                     RoundRect(x*64,y*64,64,64,10).draw(Color(200, 0,0));
                 else if(map_data[x][y] == 0b1000)
@@ -71,7 +72,6 @@ public:
         
         if(tutorial_flag){
             FontAsset(U"Menu")(U"左右キーで移動").drawAt(Vec2(64*4,64*96), ColorF(0.25));
-            FontAsset(U"Menu")(U"Zキーでダッシュ").drawAt(Vec2(64*9,64*96), ColorF(0.25));
             FontAsset(U"Menu")(U"Xキーでジャンプ").drawAt(Vec2(64*16,64*96), ColorF(0.25));
         FontAsset(U"Menu")(U"ジャンプ中にXキーでワイヤーアクション").drawAt(Vec2(64*30,64*96), ColorF(0.25));
         FontAsset(U"Menu")(U"押す長さによって角度を変えられる").drawAt(Vec2(64*30,64*97), ColorF(0.25));
@@ -84,5 +84,24 @@ public:
         
         
     };
+    void EditStage(Vec2 pos,int id){
+        int px = (int)pos.x/64;
+        int py = (int)pos.y/64;
+        if(py<0||px<0||py>=100||px>=100) return;
+        map_data[px][py] = id;
+    }
+    void ResetStartPos(Vec2 pos){
+        StartPos = pos;
+    }
+    void ExportMapData(){
+        CSVData csv;
+        for(int y=0;y<100;y++){
+            for(int x=0;x<100;x++){
+                csv.write(map_data[x][y]);
+            }
+            csv.newLine();
+        }
+        csv.save(Resource(U"./Levels/stage_edit.csv"));
+    }
 };
 #endif /* Stage_hpp */

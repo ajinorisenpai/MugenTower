@@ -12,9 +12,13 @@
 #include "GameInfo.h"
 #include "Game.hpp"
 class Debug : public Game{
-
 private:
-
+    bool palletmode = true;
+    int mapid = 0;
+    bool mapcheck1 = false;
+    bool mapcheck2 = false;
+    bool mapcheck3 = false;
+    bool ResetStartPos = false;
 public:
     Debug(const InitData& init): Game(init) {};
     void update() override;

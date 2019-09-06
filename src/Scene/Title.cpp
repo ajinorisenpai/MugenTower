@@ -15,27 +15,27 @@ void Title::update(){
     
     if (m_tutorialButton.leftClicked())
     {
-        getData().StageFile = Resource(U"Levels/tutorial.csv");
+        getData().StageFile = U"Levels/tutorial.csv";
         changeScene(State::Game);
     }
     if (m_stage1Button.leftClicked())
     {
-        getData().StageFile = Resource(U"Levels/stage1.csv");
+        getData().StageFile = U"Levels/stage1.csv";
         changeScene(State::Game);
     }
     if (m_stage2Button.leftClicked())
     {
-        getData().StageFile = Resource(U"Levels/stage2.csv");
+        getData().StageFile = U"Levels/stage2.csv";
         changeScene(State::Game);
     }
     if (m_stage3Button.leftClicked())
     {
-        getData().StageFile = Resource(U"Levels/stage3.csv");
+        getData().StageFile = U"Levels/stage_edit.csv";
         changeScene(State::Game);
     }
     if (DebugButton.leftClicked())
     {
-        getData().StageFile = Resource(U"Levels/tutorial.csv");
+        getData().StageFile = U"Levels/stage_edit.csv";
         changeScene(State::Debug);
     }
     if (m_exitButton.leftClicked())
@@ -61,8 +61,8 @@ void Title::draw() const{
     FontAsset(U"Menu")(U"チュートリアル").drawAt(m_tutorialButton.center(), ColorF(0.25));
     FontAsset(U"Menu")(U"ステージ 1").drawAt(m_stage1Button.center(), ColorF(0.25));
     FontAsset(U"Menu")(U"ステージ 2").drawAt(m_stage2Button.center(), ColorF(0.25));
-    FontAsset(U"Menu")(U"ステージ 3").drawAt(m_stage3Button.center(), ColorF(0.25));
-    FontAsset(U"Menu")(U"コンフィグ").drawAt(DebugButton.center(), ColorF(0.25));
+    FontAsset(U"Menu")(U"自作ステージ").drawAt(m_stage3Button.center(), ColorF(0.25));
+    FontAsset(U"Menu")(U"ステージ作成").drawAt(DebugButton.center(), ColorF(0.25));
     
     FontAsset(U"Menu")(U"おわる").drawAt(m_exitButton.center(), ColorF(0.25));
     
