@@ -1,4 +1,4 @@
-﻿#ifndef Stage_hpp
+#ifndef Stage_hpp
 #define Stage_hpp
 
 #include <stdio.h>
@@ -10,6 +10,7 @@ private:
     vector<vector<int>> map_data;
     Vec2 StartPos = Vec2(400,400);
     bool tutorial_flag = false;
+    const int VIS_RANGE = 20;
 public:
     Stage(String path){
         map_data = vector<vector<int>>(100,vector<int>(100,0));
@@ -43,12 +44,15 @@ public:
     // 0b00100 : 触ると死ぬ
     // 0b01000 : ゴール
     // 0b10000 : スタート
-    const void draw() const{
-        for(int y:step(100)){
-            for(int x:step(100)){
-                     if(map_data[x][y] == 0b0001) RoundRect(x*64,y*64,64,64,10).draw(Color(30, 200, 30));
+    const void draw(Vec2 pos) const{
+        int sx = (int)pos.x/64;
+        int sy = (int)pos.y/64;
+        for(int y = sy-VIS_RANGE;y<sy+VIS_RANGE;y++){
+            for(int x =sx-VIS_RANGE;x<sx+VIS_RANGE;x++){
+                if(y<0||x<0||y>=100||x>=100) continue;
+                     if(map_data[x][y] == 0b0001) RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(30, 200, 30));
                 else if(map_data[x][y] == 0b0010)
-                    RoundRect(x*64,y*64,64,64,10).draw(Color(50,50,50));
+                    RoundRect(x*64,y*64,64,64,10).draw(Color(50,50,50)).drawFrame(3, 3, Palette::Black);
                 else if(map_data[x][y] == 0b0011)
                      RoundRect(x*64,y*64,64,64,10).draw(Color(100,100,100));
                 else if(map_data[x][y] == 0b0100)
@@ -64,6 +68,7 @@ public:
                     
             }
         }
+        
         if(tutorial_flag){
             FontAsset(U"Menu")(U"左右キーで移動").drawAt(Vec2(64*4,64*96), ColorF(0.25));
             FontAsset(U"Menu")(U"Zキーでダッシュ").drawAt(Vec2(64*9,64*96), ColorF(0.25));
@@ -76,6 +81,8 @@ public:
        FontAsset(U"Menu")(U"Cキーを長押しすれば周りを見ることができる").drawAt(Vec2(64*60,64*97), ColorF(0.25)); FontAsset(U"Menu")(U"赤色ブロックに当たるとゲームオーバー").drawAt(Vec2(64*70,64*96), ColorF(0.25));
         FontAsset(U"Menu")(U"黄色い扉の前でジャンプするとゲームクリアだ").drawAt(Vec2(64*92,64*96), ColorF(0.25));
         }
+        
+        
     };
 };
 #endif /* Stage_hpp */

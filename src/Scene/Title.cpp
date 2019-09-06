@@ -1,4 +1,4 @@
-﻿#include "Title.hpp"
+#include "Title.hpp"
 
 void Title::update(){
     m_tutorialTransition.update(m_tutorialButton.mouseOver());
@@ -35,6 +35,7 @@ void Title::update(){
     }
     if (DebugButton.leftClicked())
     {
+        getData().StageFile = Resource(U"Levels/tutorial.csv");
         changeScene(State::Debug);
     }
     if (m_exitButton.leftClicked())

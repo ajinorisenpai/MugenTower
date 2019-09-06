@@ -8,6 +8,10 @@ void Hook::update(){
     if(mState!= State::Dead){
         if(hooked){
             GetGame()->GetPlayer().hooked(pos);
+//ワイヤー近距離なら切り離すversion
+            if( GetGame()->GetPlayer().GetPos().distanceFrom(pos)<80.0){
+                length = 0.0;
+            }
         }else{
             auto checkMapData = [this](const Vec2 po)->int{
                 if(pos.x<0 || pos.y<0 || pos.x > 300*64 || pos.y > 300*64 ) return 0;
@@ -27,7 +31,7 @@ void Hook::update(){
             
         }
         s_pos = GetGame()->GetPlayer().GetPos();
-        s_pos.x +=32.0;
+        s_pos.x += 32.0;
         s_pos.y += 20.0;
         length-=Scene::DeltaTime()*50.0;
     }

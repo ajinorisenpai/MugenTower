@@ -1,4 +1,4 @@
-﻿#include "Player.hpp"
+#include "Player.hpp"
 #include "Game.hpp"
 void Player::shot_bullet(){
     if(facing_left) GetGame()->make_bullet(Vec2(pos.x+30.0,pos.y+32.0),Vec2(-480.0,Random<double>(-100.0,100.0)));
@@ -137,6 +137,7 @@ void Player::handle_input(){
             //フックボタン
             if(KeyX.pressed()){
                 if(can_hook){
+                    
                     hooktime+=d_time*hookspeed;
                     can_shoot_hook = true;
                 }
@@ -208,7 +209,6 @@ void Player::GameOver(){
 }
 void Player::HitCheck(){
     if(p_st==Dead || p_st == Clear) return;
-//    Print<< (int)pos.x/64 << U", " << (int)pos.y/64;
     int hit_r = 26.0;
     int hit_l = 45.0;
     int hit_u = 66.0;

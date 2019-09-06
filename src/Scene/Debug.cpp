@@ -1,4 +1,4 @@
-﻿//
+//
 //  Debug.cpp
 //  empty
 //
@@ -9,8 +9,17 @@
 #include "Burn.hpp"
 
 void Debug::update(){
+    
+    if(KeyA.pressed()){
+        camera_scale = 0.1;
+    }else{
+        
+    }
+    Game::update();
 }
 void Debug::draw() const{
     Rect(10,10,100,100).draw();
-    
+    Game::draw();
+    ClearPrint();
+    Print << U"{:.0f}"_fmt(camera.getCenter());
 }

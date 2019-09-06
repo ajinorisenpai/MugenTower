@@ -1,4 +1,4 @@
-﻿//
+//
 //  Debug.hpp
 //  empty
 //
@@ -10,13 +10,13 @@
 #include <stdio.h>
 #include <Siv3D.hpp>
 #include "GameInfo.h"
-
-class Debug : public SceneManager<State, GameData>::Scene{
+#include "Game.hpp"
+class Debug : public Game{
 
 private:
 
 public:
-    Debug(const InitData& init): IScene(init) {};
+    Debug(const InitData& init): Game(init) {};
     void update() override;
     void draw() const override;
 };

@@ -37,6 +37,7 @@
 		BA4BC56223168C220089D66F /* Hook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA4BC56023168C220089D66F /* Hook.cpp */; };
 		BA63C42422FEF44A004B7335 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA63C42222FEF44A004B7335 /* Actor.cpp */; };
 		BA8204542313789A001693FE /* Burn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA8204522313789A001693FE /* Burn.cpp */; };
+		BAD06D5B2322247300FAC284 /* StageSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAD06D592322247300FAC284 /* StageSelectScene.cpp */; };
 		ED7A3C652320BF7A00E95914 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7A3C632320BF7A00E95914 /* Debug.cpp */; };
 		ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07A22FE9D6600FCDB83 /* Game.cpp */; };
 		ED7AF07F22FE9D8200FCDB83 /* Title.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7AF07D22FE9D8200FCDB83 /* Title.cpp */; };
@@ -83,6 +84,8 @@
 		BA63C42322FEF44A004B7335 /* Actor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Actor.hpp; sourceTree = "<group>"; };
 		BA8204522313789A001693FE /* Burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Burn.cpp; sourceTree = "<group>"; };
 		BA8204532313789A001693FE /* Burn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Burn.hpp; sourceTree = "<group>"; };
+		BAD06D592322247300FAC284 /* StageSelectScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StageSelectScene.cpp; sourceTree = "<group>"; };
+		BAD06D5A2322247300FAC284 /* StageSelectScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StageSelectScene.hpp; sourceTree = "<group>"; };
 		ED7A3C632320BF7A00E95914 /* Debug.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		ED7A3C642320BF7A00E95914 /* Debug.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
 		ED7AF07A22FE9D6600FCDB83 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				ED7AF07E22FE9D8200FCDB83 /* Title.hpp */,
 				ED7A3C632320BF7A00E95914 /* Debug.cpp */,
 				ED7A3C642320BF7A00E95914 /* Debug.hpp */,
+				BAD06D592322247300FAC284 /* StageSelectScene.cpp */,
+				BAD06D5A2322247300FAC284 /* StageSelectScene.hpp */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				ED7A3C652320BF7A00E95914 /* Debug.cpp in Sources */,
 				ED7AF07C22FE9D6600FCDB83 /* Game.cpp in Sources */,
 				BA4BC56223168C220089D66F /* Hook.cpp in Sources */,
+				BAD06D5B2322247300FAC284 /* StageSelectScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
