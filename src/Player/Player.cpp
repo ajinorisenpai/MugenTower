@@ -221,17 +221,22 @@ void Player::HitCheck(){
         return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64];
     };
     pos.y+= hit_u;
+    TimeProfiler tp;
+    tp.begin(U"one hit check");
+    checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y));
+    tp.end();
     if(velocity.y > 0){
         //下との衝突
-        if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
-            checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
-            checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 4){
-            GameOver();
-            return;
-        }
+        
         if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
            checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
            checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 1){
+            if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) &
+                checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) &
+                checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 4){
+                GameOver();
+                return;
+            }
             landing_se.playOneShot(1.0);
             velocity.y = 0;
             velocity.x /= 2;
@@ -242,20 +247,33 @@ void Player::HitCheck(){
             hooktime = 0;
             can_hook = false;
             p_st = State::Idle;
-            
+        }else{
+            if((checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y)) |
+                checkMapData(Vec2(pos.x+hit_mid,pos.y+velocity.y)) |
+                checkMapData(Vec2(pos.x+hit_l,pos.y+velocity.y))) & 4){
+                GameOver();
+                return;
+            }
         }
         
     }else if(velocity.y == 0){
         if(!((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) |
             checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) |
             checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y)))&1)){
+            if((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) |
+                checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) |
+                checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))) & 4){
+                GameOver();
+                return;
+            }
             p_st = State::Jump;
-        }
-        if((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) |
-            checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) |
-            checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))) & 4){
-            GameOver();
-            return;
+        }else{
+            if((checkMapData(Vec2(pos.x+hit_r,pos.y+64+velocity.y)) &
+                checkMapData(Vec2(pos.x+hit_l,pos.y+64+velocity.y)) &
+                checkMapData(Vec2(pos.x+hit_mid,pos.y+64+velocity.y))) & 4){
+                GameOver();
+                return;
+            }
         }
     }
     

@@ -1,4 +1,4 @@
-﻿#include <Siv3D.hpp>
+#include <Siv3D.hpp>
 #include "Game.hpp"
 #include "Title.hpp"
 #include "Debug.hpp"
@@ -8,7 +8,7 @@ void Main()
     FontAsset::Register(U"Menu", 30, Typeface::Regular);
     FontAsset::Register(U"Score", 36, Typeface::Bold);
 
-    Scene::SetBackground(ColorF(0.1, 0.1, 0.1));
+    Scene::SetBackground(Color(0x15, 0x13, 0x27));
 
     SceneManager<State, GameData> manager;
     manager

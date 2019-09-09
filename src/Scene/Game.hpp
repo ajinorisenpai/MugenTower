@@ -41,7 +41,7 @@ public:
     {
         HouseBGM = Audio(Resource(U"Sound/HouseBGM.mp3"));
         HouseBGM.setLoop(true);
-        HouseBGM.play();
+//        HouseBGM.play();
     }
 //getter
     vector<vector<int>> GetMapData() const {

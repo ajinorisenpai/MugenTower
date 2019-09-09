@@ -11,6 +11,8 @@ private:
     Vec2 StartPos = Vec2(400,400);
     bool tutorial_flag = false;
     const int VIS_RANGE = 20;
+    Texture texture_tile01;
+    Texture global_map;
 public:
     Stage(String path){
         map_data = vector<vector<int>>(110,vector<int>(110,0));
@@ -33,7 +35,14 @@ public:
         if(path==Resource(U"Levels/tutorial.csv")){
             tutorial_flag = true;
         }
-        
+        texture_tile01 = Texture(U"Image/map_tile.png");
+        for(auto y : step(100)){
+            for(auto x : step(100)){
+                if(map_data[x][y] == 0b0001){
+                    
+                }
+            }
+        }
     }
     
     void load_stage(){
@@ -51,7 +60,10 @@ public:
         for(int y = sy-VIS_RANGE;y<sy+VIS_RANGE;y++){
             for(int x =sx-VIS_RANGE;x<sx+VIS_RANGE;x++){
                 if(y<0||x<0||y>=100||x>=100) continue;
-                     if(map_data[x][y] == 0b0001) RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(30, 200, 30));
+                if(map_data[x][y] == 0b0001){
+                    texture_tile01(2*64,5*64,64,64).draw(x*64,y*64);
+                }
+//                RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(30, 200, 30));
                 else if(map_data[x][y] == 0b0010)
                     RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3, Palette::Black);
                 else if(map_data[x][y] == 0b0011)
