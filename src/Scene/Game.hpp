@@ -18,13 +18,13 @@ protected:
 //オーディオ
     Audio HouseBGM;
 //カメラ設定
-    const int MULTI_SCROLL = 0b0100;
+    const int MULTI_SCROLL = 0b0101;
     float camera_scale = 1.0;
     Camera2D camera = Camera2D(1.0,Camera2DParameters::MouseOnly());
     
-    Camera2D frontcamera = Camera2D(1.2,Camera2DParameters::MouseOnly());
-    Camera2D bgcamera_1 = Camera2D(0.7,Camera2DParameters::MouseOnly());
-    Camera2D bgcamera_2 = Camera2D(0.85,Camera2DParameters::MouseOnly());
+    Camera2D frontcamera = Camera2D(1.0,Camera2DParameters::MouseOnly());
+    Camera2D bgcamera_1 = Camera2D(1.0,Camera2DParameters::MouseOnly());
+    Camera2D bgcamera_2 = Camera2D(1.0,Camera2DParameters::MouseOnly());
     
     void camera_update();
 //プレイヤー設定

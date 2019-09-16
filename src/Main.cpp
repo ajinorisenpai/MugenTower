@@ -8,6 +8,7 @@ void Main()
     FontAsset::Register(U"Menu", 30, Typeface::Regular);
     FontAsset::Register(U"Score", 36, Typeface::Bold);
 
+    FontAsset::Register(U"Debug", 16, Typeface::Regular);
     Scene::SetBackground(Color(0x15, 0x13, 0x27));
 
     SceneManager<State, GameData> manager;

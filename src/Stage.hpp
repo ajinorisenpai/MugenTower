@@ -12,6 +12,7 @@ private:
     bool tutorial_flag = false;
     const int VIS_RANGE = 20;
     Texture texture_tile01;
+    Texture texture_background;
     Texture global_map;
 public:
     Stage(String path){
@@ -36,6 +37,7 @@ public:
             tutorial_flag = true;
         }
         texture_tile01 = Texture(U"Image/map_tile.png");
+        texture_background = Texture(U"Image/background.png");
         for(auto y : step(100)){
             for(auto x : step(100)){
                 if(map_data[x][y] == 0b0001){
@@ -54,6 +56,14 @@ public:
     // 0b00100 : 触ると死ぬ
     // 0b01000 : ゴール
     // 0b10000 : スタート
+    const void bg_draw(Vec2 pos) const{
+        Point bgsize = texture_background.size();
+        //あとでなおす
+        texture_background.draw(-800,0);
+        texture_background.draw(bgsize.x-800,0);
+        texture_background.draw(-800,bgsize.y);
+        texture_background.draw(bgsize.x-800,bgsize.y);
+    }
     const void draw(Vec2 pos) const{
         int sx = (int)pos.x/64;
         int sy = (int)pos.y/64;
@@ -61,13 +71,14 @@ public:
             for(int x =sx-VIS_RANGE;x<sx+VIS_RANGE;x++){
                 if(y<0||x<0||y>=100||x>=100) continue;
                 if(map_data[x][y] == 0b0001){
-                    texture_tile01(2*64,5*64,64,64).draw(x*64,y*64);
+//                    texture_tile01(2*64,1*64,64,64).draw(x*64,y*64);
+                    RoundRect(x*64+2,y*64+2,64-4,64-4,10).draw(Color(80,80,80,150)).drawFrame(3, 3,Color(30, 200, 30));
                 }
-//                RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(30, 200, 30));
+                
                 else if(map_data[x][y] == 0b0010)
                     RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3, Palette::Black);
                 else if(map_data[x][y] == 0b0011)
-                     RoundRect(x*64,y*64,64,64,10).draw(Color(100,100,100));
+                     RoundRect(x*64+2,y*64+2,64-4,64-4,10).draw(Color(10,10,10,200)).drawFrame(3, 3, Color(40,40,40));
                 else if(map_data[x][y] == 0b0100)
                     RoundRect(x*64,y*64,64,64,10).drawFrame(3, 3,Color(180, 0, 100));
                 else if(map_data[x][y] == 0b0101)

@@ -15,6 +15,13 @@ class Debug : public Game{
 private:
     bool palletmode = true;
     int mapid = 0;
+    Circle ChBox01 = Circle(160,40, 20);
+    Circle ChBox02 = Circle(160,80, 20);
+    Circle ChBox03 = Circle(160,120, 20);
+    Circle ChBox04 = Circle(160,160, 20);
+    
+    Rect SaveBtn = Rect(40,200,80,30);
+    Rect ExitBtn = Rect(40,240,80,30);
     bool mapcheck1 = false;
     bool mapcheck2 = false;
     bool mapcheck3 = false;

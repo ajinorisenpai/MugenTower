@@ -18,12 +18,12 @@ void Game::camera_update(){
         frontcamera.update();
         bgcamera_1.update();
         bgcamera_2.update();
-        frontcamera.setScale(camera_scale*1.2);
-        bgcamera_1.setScale(camera_scale*0.4);
-        bgcamera_2.setScale(camera_scale*0.85);
-        frontcamera.setTargetCenter(m_player.center());
-        bgcamera_1.setTargetCenter(m_player.center());
-        bgcamera_2.setTargetCenter(m_player.center());
+//        frontcamera.setScale(camera_scale*1.2);
+//        bgcamera_1.setScale(camera_scale*0.4);
+//        bgcamera_2.setScale(camera_scale*0.85);
+        frontcamera.setTargetCenter(m_player.center()*1.2);
+        bgcamera_1.setTargetCenter(m_player.center()*0.5);
+        bgcamera_2.setTargetCenter(m_player.center()*0.95);
     }
 }
 
@@ -52,15 +52,13 @@ void Game::draw() const{
     TimeProfiler tp;
     tp.begin(U"MainDraw");
     if(MULTI_SCROLL & 0b0001){
+        
         const auto t1 = bgcamera_1.createTransformer();
-//        m_player.draw();
-        game_stage.draw(m_player.center());
-        m_player.draw();
+        game_stage.bg_draw(m_player.center());
     }
     if(MULTI_SCROLL & 0b0010){
         const auto t2 = bgcamera_2.createTransformer();
-        game_stage.draw(m_player.center());
-        m_player.draw();
+        
     }
     
     {
