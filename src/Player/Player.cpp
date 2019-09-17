@@ -120,7 +120,7 @@ void Player::handle_input(){
             if(KeyLeft.pressed()){
                 if(facing_left){
                     if(velocity.x > -Walkspeed_limit)
-                        velocity.x -= 30.0*d_time;
+                        velocity.x -= runspeed*d_time;
                     
                 }else{
                                 facing_left = !facing_left;
@@ -128,7 +128,7 @@ void Player::handle_input(){
             }else if(KeyRight.pressed()){
                 if(!facing_left){
                     if(velocity.x < Walkspeed_limit)
-                        velocity.x += 30.0*d_time;
+                        velocity.x += runspeed*d_time;
                     
                 }else{
                         facing_left = !facing_left;
@@ -217,14 +217,16 @@ void Player::HitCheck(){
     int hit_d = 20.0;
     int hit_mid = 36.0;
     auto checkMapData = [this](const Vec2 po)->int{
-        if(po.x<0||po.y<0||po.x>=64*100||po.y>=64*100) return 4;
+        if(po.y>=64*100) return 4;
+        if(po.x<0||po.y<0||po.x>=64*100) return 0;
         return GetGame()->GetMapData()[(int)po.x/64][(int)po.y/64];
     };
-    pos.y+= hit_u;
+    
     TimeProfiler tp;
     tp.begin(U"one hit check");
     checkMapData(Vec2(pos.x+hit_r,pos.y+velocity.y));
     tp.end();
+    pos.y+= hit_u;
     if(velocity.y > 0){
         //下との衝突
         

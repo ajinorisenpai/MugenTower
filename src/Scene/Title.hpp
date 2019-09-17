@@ -1,4 +1,4 @@
-﻿#ifndef Title_hpp
+#ifndef Title_hpp
 #define Title_hpp
 
 #include <stdio.h>
@@ -24,12 +24,16 @@ private:
     Transition m_exitTransition = Transition(0.2s, 0.2s);
     
     Rect DebugButton = Rect(Arg::center = Scene::Center().movedBy(0, 250), 300,40);
+    Transition m_debugTransition = Transition(0.2s, 0.2s);
     
-    
-
+    Audio TitleBGM;
 public:
     Title(const InitData& init)
-    : IScene(init) {}
+    : IScene(init) {
+        TitleBGM = Audio(Resource(U"Sound/negainotou.wav"));
+        TitleBGM.setLoop(true);
+        TitleBGM.play();
+    }
     void update() override;
     void draw() const override;
     

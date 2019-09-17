@@ -4,13 +4,20 @@
 #include "Debug.hpp"
 void Main()
 {
-    FontAsset::Register(U"Title", 80, U"example/font/AnnyantRoman/AnnyantRoman.ttf");
+    //ウィンドウサイズなど
+    Window::Resize(1280,900);
+    Scene::SetBackground(Color(0x15, 0x13, 0x27));
+    Window::SetStyle(WindowStyle::Frameless);
+    
+    
+    //フォントアセット
+    FontAsset::Register(U"Title", 80, Resource(U"font/AnnyantRoman.ttf"));
     FontAsset::Register(U"Menu", 30, Typeface::Regular);
     FontAsset::Register(U"Score", 36, Typeface::Bold);
-
     FontAsset::Register(U"Debug", 16, Typeface::Regular);
-    Scene::SetBackground(Color(0x15, 0x13, 0x27));
-
+    
+    
+    //シーンマネージャー
     SceneManager<State, GameData> manager;
     manager
     .add<Title>(State::Title)
@@ -18,23 +25,7 @@ void Main()
     .add<Debug>(State::Debug)
     .setFadeColor(ColorF(0.0))
     ;
-    Window::Resize(1280,800);
-    // ウィンドウの枠を非表示にする
-    Window::SetStyle(WindowStyle::Frameless);
-    // 現在のモニタで使用可能なフルスクリーン解像度を取得
-//    const Array<Size> resolutions = Graphics::GetFullscreenResolutions();
-//    
-//    if (!resolutions)
-//    {
-//        throw Error(U"フルスクリーンモードを利用できません。");
-//    }
-//    // 最大のフルスクリーン解像度にする
-//    size_t index = resolutions.size() - 1;
-//    if (!Window::SetFullscreen(true, resolutions[index]))
-//    {
-//        throw Error(U"フルスクリーンモードへの切り替えに失敗しました。");
-//    }
-//    
+   
     while (System::Update())
     {
         if (!manager.update())

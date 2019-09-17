@@ -1,6 +1,6 @@
 #ifndef Player_hpp
 #define Player_hpp
-
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include "GameInfo.h"
 #include <Siv3D.hpp>
@@ -27,11 +27,12 @@ private:
     };
     State p_st = State::Idle;
 //キャラクタ定数
-    const int GRAVITY = 20;
-    const int jump_power = 12;
-    const int Runspeed_limit = 10;
+    const int GRAVITY = 20; 
+    const int jump_power = 12; 
+    const int Runspeed_limit = 8;
     const int Walkspeed_limit = 6;
-    const int walkspeed = 20;
+    const int walkspeed = 18;
+    const int runspeed = 30;
     const double hookspeed = 3.0; //フックアクションの動作速度
     
 //キャラクタ状態

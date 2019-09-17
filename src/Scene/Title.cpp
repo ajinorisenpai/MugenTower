@@ -6,6 +6,7 @@ void Title::update(){
     m_stage1Transition.update(m_stage1Button.mouseOver());
     m_stage2Transition.update(m_stage2Button.mouseOver());
     m_stage3Transition.update(m_stage3Button.mouseOver());
+    m_debugTransition.update(DebugButton.mouseOver());
     m_exitTransition.update(m_exitButton.mouseOver());
     
     if (m_tutorialButton.mouseOver() || m_exitButton.mouseOver())
@@ -54,7 +55,7 @@ void Title::draw() const{
     m_stage1Button.draw(ColorF(1.0, m_stage1Transition.value())).drawFrame(2);
     m_stage2Button.draw(ColorF(1.0, m_stage2Transition.value())).drawFrame(2);
     m_stage3Button.draw(ColorF(1.0, m_stage3Transition.value())).drawFrame(2);
-    DebugButton.draw(ColorF(1.0, m_stage3Transition.value())).drawFrame(2);
+    DebugButton.draw(ColorF(1.0,m_debugTransition.value())).drawFrame(2);
     
     m_exitButton.draw(ColorF(1.0, m_exitTransition.value())).drawFrame(2);
     

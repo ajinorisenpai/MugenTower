@@ -39,9 +39,9 @@ public:
     Game(const InitData& init)
     : IScene(init)
     {
-        HouseBGM = Audio(Resource(U"Sound/HouseBGM.mp3"));
+        HouseBGM = Audio(Resource(U"Sound/FirstPiece.wav"));
         HouseBGM.setLoop(true);
-//        HouseBGM.play();
+        HouseBGM.play();
     }
 //getter
     vector<vector<int>> GetMapData() const {
@@ -73,6 +73,7 @@ public:
     
     //
     void init(){
+        m_hook.unactive();
         m_player.init(game_stage.GetStartPos());
     }
     

@@ -32,7 +32,9 @@ public:
         mState = State::Active;
         hooked = false;
     }
-    
+    void unactive(){
+        mState = State::Dead;
+    }
     void update();
     void draw() const;
     
